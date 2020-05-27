@@ -1,22 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import {connect} from 'react-redux';
 import { Cart } from "@styled-icons/evil/Cart";
 
-
   function Header(props){
-    const { cartCounts } = props
+    const { cartItems} = props
     console.log('Header 확인', props)
 
   return (
     <Container>
       <Wrapper>
         <TitleContainer>
-          <Title>CLASS 202</Title>
+            <Title>CLASS 202</Title>
         </TitleContainer>
         <IconContainer>
           <CartIcon/>
-              <ProductNumber>{cartCounts.cartCounts}</ProductNumber>
+              <ProductNumber>{cartItems.length}</ProductNumber>
           <BasketIcon>
             <Cart></Cart>
           </BasketIcon>
@@ -27,15 +25,7 @@ import { Cart } from "@styled-icons/evil/Cart";
 }
 
 
-const mapStateToProps = (state : any) => {
-  return {
-    cartCounts: state.cartCounts,
-  };
-};
-
-
-
-export default connect(mapStateToProps)(Header);
+export default Header;
 
 
 const Container = styled.div`
