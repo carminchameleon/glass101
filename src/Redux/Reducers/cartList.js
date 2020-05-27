@@ -1,14 +1,16 @@
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions/index';
+
 const INITIAL_STATE = {
-  cartList: []
+  items : []
 };
 
 // 카트에 들어가는 숫자 통제
 export default function cartList(state = INITIAL_STATE, action ) {
   switch (action.type) {
-    case "ADD_CART":
-      return { ...state, cartList : state.cartList };
-    case "REMOVE_CART_COUNTS":
-      return { ...state, cartList: state.cartList };
+    case "ADD_TO_CART":
+      return { items : action.payload.cartItems };
+    case "REMOVE_FROM_CART":
+      return { items: action.payload.cartItems };
     default:
       return state;
   }

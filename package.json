@@ -15,6 +15,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.1",
     "styled-icons": "^10.2.1",
     "styled-reset": "^4.1.5"
@@ -26,7 +27,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "react/prefer-stateless-function": 0,
+      "react/jsx-filename-extension": 0,
+      "react/jsx-one-expression-per-line": 0
+    }
   },
   "browserslist": {
     "production": [
