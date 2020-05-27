@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
@@ -6,14 +6,26 @@ import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart"
 import { addCartCounts, removeCartCounts, addProduct } from "../../Redux/Actions";
 
 const Items = (props) => {
-  const { data, addCartCounts, addProduct } = props;
-  console.log("넘어온 리스트 확인", props.data);
+  console.log('이게뭐임', props)
+  const [cart, setCart] = useState([])
+  const { data, handleAddToCart,  cartItems } = props;
 
   /// 카트 리스트에 추가 하는 것
-  const addCartList = (item ) => {
-    addCartCounts();
-    addProduct(item);
-  };
+  const addCartList = (item) =>{
+    const newCartList = []
+    // 만약 카트가 비어 있다면, 
+     if(cart.length > 0){   
+       newCartList.push(item)
+     }
+    }
+  
+  const handleCountsLimit = (item) => {
+    if(cartItems.length < 3){
+      handleAddToCart(item)
+    } else {
+      alert('아이템이 꽉찼습니다.')
+    }
+  }
 
   /// 카트 리스트에서 제거 하기
   const removeCartList = () => {};
@@ -44,7 +56,8 @@ const Items = (props) => {
                   </PriceContainer>
                   <CartContainer>
                     <CartWrapper>
-                      <CartTextBox onClick={() => addCartList(item)}>
+                      <CartTextBox onClick={()=>
+                        handleCountsLimit(item)}>
                         Add To Cart
                       </CartTextBox>
                     </CartWrapper>

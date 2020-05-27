@@ -4,7 +4,6 @@ import Routes from "./Routes";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "Redux/rootReducer";
-import {createGlobalStyle} from 'styled-components'
 import GlobalStyle from "styles/GlobalStyle";
 
 
