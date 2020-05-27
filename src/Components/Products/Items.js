@@ -3,25 +3,26 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
 import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart";
-import { addCartCounts, removeCartCounts, addProduct } from "../../Redux/Actions";
+import { connet } from "react-redux";
+import { addToCart } from "../../Redux/Actions/index";
 
 const Items = (props) => {
+  const { data, addToCart, cartItems } = props;
   console.log('이게뭐임', props)
   const [cart, setCart] = useState([])
-  const { data, handleAddToCart,  cartItems } = props;
 
   /// 카트 리스트에 추가 하는 것
   const addCartList = (item) =>{
     const newCartList = []
     // 만약 카트가 비어 있다면, 
      if(cart.length > 0){   
-       newCartList.push(item)
+      addToCart(cartItems, item)
      }
     }
   
-  const handleCountsLimit = (item) => {
+  const handleCountsLimit = ( cartItems, item) => {
     if(cartItems.length < 3){
-      handleAddToCart(item)
+      addToCart(cartItems, item)
     } else {
       alert('아이템이 꽉찼습니다.')
     }
@@ -57,7 +58,8 @@ const Items = (props) => {
                   <CartContainer>
                     <CartWrapper>
                       <CartTextBox onClick={()=>
-                        handleCountsLimit(item)}>
+                      handleCountsLimit(cartItems, item)}
+                      >
                         Add To Cart
                       </CartTextBox>
                     </CartWrapper>
@@ -72,14 +74,13 @@ const Items = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cartCounts: state.cartCounts,
-    cartList: state.cartList,
-  };
-};
 
-export default connect(mapStateToProps, { addCartCounts, addProduct })(Items);
+const mapStateToProps = state => ({
+  cartItems : state.cart.items
+})
+
+
+export default connect(mapStateToProps, { addToCart })(Items);
 
 const Container = styled.div`
   max-width: 1300px;
