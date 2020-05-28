@@ -1,22 +1,36 @@
-import React from "react";
+import React ,{ useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
 import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart";
-import { addCartCounts, removeCartCounts, addProduct } from "../../Redux/Actions";
+import { connet } from "react-redux";
+import { addToCart, removeFromCart } from "../../Redux/Actions/index";
 
 const Items = (props) => {
-  const { data, addCartCounts, addProduct } = props;
-  console.log("넘어온 리스트 확인", props.data);
+  const { data, addToCart, cartItems , removeFromCart} = props;
+
+  const [cart, setCart] = useState([])
 
   /// 카트 리스트에 추가 하는 것
-  const addCartList = (item ) => {
-    addCartCounts();
-    addProduct(item);
-  };
-
-  /// 카트 리스트에서 제거 하기
-  const removeCartList = () => {};
+  const addCartList = (item) =>{
+    const newCartList = []
+    // 만약 카트가 비어 있다면, 
+     if(cart.length > 0){   
+      addToCart(cartItems, item)
+     }
+    }
+  
+  const handleCountsLimit = ( cartItems, item) => {
+    if(cartItems.length < 3){
+      addToCart(cartItems, item)
+    } else {
+      alert('아이템이 꽉찼습니다.')
+    }
+  }
+ // 카트 안에 있는 아이템인지 아닌지 확인
+  // const checkCartIn = (item) => {
+  //    return (productItems.filter(product => product.id === item.id).length === 0)
+  // }
 
   return (
     <Container>
@@ -42,13 +56,24 @@ const Items = (props) => {
                       <Price>{item.price.toLocaleString()}원</Price>
                     </PriceWrapper>
                   </PriceContainer>
+                  {cartItems.filter(product => product.id === item.id).length === 0 ?  
                   <CartContainer>
                     <CartWrapper>
-                      <CartTextBox onClick={() => addCartList(item)}>
-                        Add To Cart
+                    <CartTextBox onClick={()=>
+                      handleCountsLimit(cartItems, item)}
+                      >Add To Cart
                       </CartTextBox>
                     </CartWrapper>
-                  </CartContainer>
+                  </CartContainer> :  
+                  <CartContainer>
+                    <CartWrapper>
+                    <CartTextBox onClick={()=>
+                     removeFromCart(cartItems, item)}
+                      >Remove From Cart
+                      </CartTextBox>
+                    
+                    </CartWrapper>
+                  </CartContainer>}
                 </ProductBox>
               );
             })}
@@ -59,14 +84,13 @@ const Items = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cartCounts: state.cartCounts,
-    cartList: state.cartList,
-  };
-};
 
-export default connect(mapStateToProps, { addCartCounts, addProduct })(Items);
+const mapStateToProps = state => ({
+  cartItems : state.cart.items
+})
+
+
+export default connect(mapStateToProps, { addToCart , removeFromCart})(Items);
 
 const Container = styled.div`
   max-width: 1300px;

@@ -1,41 +1,35 @@
 import React from "react";
 import styled from "styled-components";
-import {connect} from 'react-redux';
 import { Cart } from "@styled-icons/evil/Cart";
-
+import {connect} from 'react-redux';
+import { RouteComponentProps,withRouter } from 'react-router-dom';
+import { History, LocationState } from 'history';
 
   function Header(props){
-    const { cartCounts } = props
-    console.log('Header 확인', props)
-
+    const { cartItems, history } = props;
+    
   return (
     <Container>
       <Wrapper>
         <TitleContainer>
-          <Title>CLASS 202</Title>
+          <TitleWrapper onClick={()=>(history.push('/'))}>
+            <Title >CLASS 202</Title>
+            </TitleWrapper>
         </TitleContainer>
-        <IconContainer>
+        <IconContainer onClick={()=>(history.push('/cart'))}>
           <CartIcon/>
-              <ProductNumber>{cartCounts.cartCounts}</ProductNumber>
-          <BasketIcon>
-            <Cart></Cart>
-          </BasketIcon>
+              <ProductNumber>{cartItems.length} </ProductNumber>
         </IconContainer>
       </Wrapper>
     </Container>
   );
 }
 
+const mapStateToProps = state => ({
+  cartItems : state.cart.items
+})
 
-const mapStateToProps = (state : any) => {
-  return {
-    cartCounts: state.cartCounts,
-  };
-};
-
-
-
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect ( mapStateToProps )(Header));
 
 
 const Container = styled.div`
@@ -57,30 +51,33 @@ const Wrapper = styled.div`
 
 const TitleContainer = styled.div``;
 
-const Title = styled.div`
+const TitleWrapper = styled.div``
+
+const Title = styled.button`
   font-size: 3rem;
   color: white;
   text-align: center;
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.button`
   position: absolute;
   bottom: 10px;
   right: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-const BasketIcon = styled.span`
-  font-size: 2.5rem;
-`;
 
 const ProductNumber = styled.div`
   font-size: 1.3rem;
   color: yellow;
   line-height: 3rem;
   margin-right: 10px;
+
 `;
 
 const IconTitle = styled.div`

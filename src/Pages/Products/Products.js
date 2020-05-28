@@ -4,9 +4,10 @@ import Header from "../../Components/Header/Header";
 import { productItems } from "./productItems";
 import Items from "Components/Products/Items";
 import PageNation from "Components/Products/PageNation";
+import Cart from "Pages/Cart/Cart";
 
 function SortItem(arr) {
-  const newArr = JSON.parse(JSON.stringify(arr));
+  const newArr = arr.slice()
   const result = newArr.sort(function (a, b) {
     return a.score < b.score ? 1 : -1;
   });
@@ -14,7 +15,8 @@ function SortItem(arr) {
 }
 
 const Product = () => {
-  const [data, setData] = useState(SortItem(productItems));
+  const [data, setData] = useState(productItems);
+  const [cartItems, setCartItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(5);
 
@@ -26,15 +28,23 @@ const Product = () => {
   //Change Page
   // paginate에서 숫자를 넘겨 받으면, 그 인덱스가 setCurrentPage로 들어감
   const paginate = (pageNumber) => {
-    console.log(pageNumber);
     setCurrentPage(pageNumber);
   };
 
+  const checkLocalItem = () => {
+    if (localStorage.getItem("cartItems")) {
+      setCartItems(JSON.parse(localStorage.getItem("cartItems")));
+    }
+  };
+
+
   return (
     <Container>
-      <Header></Header>
+      <Header cartItems={cartItems}></Header>
       <Body>
-        <Items data={currentProducts}></Items>
+        <Items
+          data={currentProducts}
+        ></Items>
         <PageNation
           productsPerPage={productsPerPage}
           totalProductsNumber={data.length}
@@ -52,7 +62,12 @@ const Container = styled.div`
   border: 1px solid black;
 `;
 
-const Body = styled.body`
+const Body = styled.section`
   width: 100%;
-  height: 80%;
+  height: 500px;
+`;
+
+const OrderList = styled.div`
+  width: 100%;
+  height: 700px;
 `;

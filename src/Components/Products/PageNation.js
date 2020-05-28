@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 const PageNation = (props) => {
-  console.log('페이지 네이션으로 온 것 확인', props)
   const {totalProductsNumber,productsPerPage, paginate } = props
   const pageNumbers = [];
 
@@ -16,7 +15,7 @@ const PageNation = (props) => {
       <Wrapper>
         <NumberBox>
         {pageNumbers.map((num)=>{
-          return(<Number onClick={()=> paginate(num)}>{num}</Number>)
+          return(<Number key = {num} onClick={()=> paginate(num)}>{num}</Number>)
         })}
         </NumberBox>
       </Wrapper>
