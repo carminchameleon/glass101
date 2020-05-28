@@ -51,7 +51,6 @@ const Product = () => {
           paginate={paginate}
         ></PageNation>
       </Body>
-      <Cart></Cart>
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions/index';
+import { ADD_TO_CART, REMOVE_FROM_CART, MINUS_FROM_CART } from '../Actions/index';
 
 const INITIAL_STATE = {
   items : []
@@ -11,6 +11,8 @@ export default function cartList(state = INITIAL_STATE, action ) {
       return { items : action.payload.cartItems };
     case "REMOVE_FROM_CART":
       return { items: action.payload.cartItems };
+      case "MINUS_FROM_CART":
+        return { items: action.payload.cartItems };
     default:
       return state;
   }
