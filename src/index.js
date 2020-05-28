@@ -9,10 +9,10 @@ import thunk from "redux-thunk";
 
 const initialState = {};
 
-if(localStorage.getItem('cartItems')){
-  console.log(localStorage.getItem('cartItems'))
-  initialState.cart = { items : JSON.parse(localStorage.getItem('cartItems'))}
-}
+// if(localStorage.getItem('cartItems')){
+//   console.log(localStorage.getItem('cartItems'))
+//   initialState.cart = { items : JSON.parse(localStorage.getItem('cartItems'))}
+// }
 const composeEnhancer = window.__REDIX_DEVTOOLS_EXTENSTION__ || compose;
 
 ReactDOM.render(

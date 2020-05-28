@@ -15,7 +15,7 @@ const PageNation = (props) => {
       <Wrapper>
         <NumberBox>
         {pageNumbers.map((num)=>{
-          return(<Number onClick={()=> paginate(num)}>{num}</Number>)
+          return(<Number key = {num} onClick={()=> paginate(num)}>{num}</Number>)
         })}
         </NumberBox>
       </Wrapper>

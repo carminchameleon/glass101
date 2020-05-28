@@ -14,20 +14,23 @@ function Cart(props) {
       )}
 
       <table>
-        <tr>
-          <th>checkbox</th>
-          <th>상품 정보</th>
-          <th>수량</th>
-          <th>주문금액</th>
-        </tr>
+          <thead>
+          <tr>
+          <td>checkbox</td>
+          <td>상품 정보</td>
+          <td>수량</td>
+          <td>주문금액</td>
+          </tr>
+          </thead>
         {cartItems.map((item) => {
           return (
             <tr key={item.id}>
+              <tbody>
               <td>뭐</td>
               <td>
                 <div>{item.title}</div>
                 <img
-                  style={{ width: "50px;", height: "30px;" }}
+                  style={{ width: '50px;', height: '30px;' }}
                   src={item.coverImage}
                 ></img>
                 <button
@@ -40,6 +43,7 @@ function Cart(props) {
               </td>
               <td>{item.count}</td>
               <td>{item.price * item.count}</td>
+              </tbody>
             </tr>
           );
         })}
