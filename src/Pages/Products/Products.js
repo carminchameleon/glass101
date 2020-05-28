@@ -63,7 +63,7 @@ const Container = styled.div`
   border: 1px solid black;
 `;
 
-const Body = styled.body`
+const Body = styled.section`
   width: 100%;
   height: 500px;
 `;
