@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
 import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart";
 import { connet } from "react-redux";
-import { addToCart } from "../../Redux/Actions/index";
+import { addToCart, removeFromCart } from "../../Redux/Actions/index";
 
 const Items = (props) => {
-  const { data, addToCart, cartItems } = props;
+  const { data, addToCart, cartItems , removeFromCart} = props;
   console.log('이게뭐임', props)
   const [cart, setCart] = useState([])
 
@@ -27,9 +27,10 @@ const Items = (props) => {
       alert('아이템이 꽉찼습니다.')
     }
   }
-
-  /// 카트 리스트에서 제거 하기
-  const removeCartList = () => {};
+ // 카트 안에 있는 아이템인지 아닌지 확인
+  // const checkCartIn = (item) => {
+  //    return (productItems.filter(product => product.id === item.id).length === 0)
+  // }
 
   return (
     <Container>
@@ -55,15 +56,24 @@ const Items = (props) => {
                       <Price>{item.price.toLocaleString()}원</Price>
                     </PriceWrapper>
                   </PriceContainer>
+                  {cartItems.filter(product => product.id === item.id).length === 0 ?  
                   <CartContainer>
                     <CartWrapper>
-                      <CartTextBox onClick={()=>
+                    <CartTextBox onClick={()=>
                       handleCountsLimit(cartItems, item)}
-                      >
-                        Add To Cart
+                      >Add To Cart
                       </CartTextBox>
                     </CartWrapper>
-                  </CartContainer>
+                  </CartContainer> :  
+                  <CartContainer>
+                    <CartWrapper>
+                    <CartTextBox onClick={()=>
+                     removeFromCart(cartItems, item)}
+                      >Remove From Cart
+                      </CartTextBox>
+                    
+                    </CartWrapper>
+                  </CartContainer>}
                 </ProductBox>
               );
             })}
@@ -80,7 +90,7 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { addToCart })(Items);
+export default connect(mapStateToProps, { addToCart , removeFromCart})(Items);
 
 const Container = styled.div`
   max-width: 1300px;

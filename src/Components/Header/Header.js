@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Cart } from "@styled-icons/evil/Cart";
+import {connect} from 'react-redux';
 
   function Header(props){
-    const { cartItems} = props
+    const { cartItems } = props
     console.log('Header 확인', props)
 
   return (
@@ -24,8 +25,11 @@ import { Cart } from "@styled-icons/evil/Cart";
   );
 }
 
+const mapStateToProps = state => ({
+  cartItems : state.cart.items
+})
 
-export default Header;
+export default connect ( mapStateToProps )(Header);
 
 
 const Container = styled.div`

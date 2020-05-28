@@ -7,7 +7,7 @@ import PageNation from "Components/Products/PageNation";
 import Cart from "Pages/Cart/Cart";
 
 function SortItem(arr) {
-  const newArr = JSON.parse(JSON.stringify(arr));
+  const newArr = arr.slice()
   const result = newArr.sort(function (a, b) {
     return a.score < b.score ? 1 : -1;
   });
@@ -15,7 +15,7 @@ function SortItem(arr) {
 }
 
 const Product = () => {
-  const [data, setData] = useState(SortItem(productItems));
+  const [data, setData] = useState(productItems);
   const [cartItems, setCartItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(5);
