@@ -13,7 +13,9 @@ import { History, LocationState } from 'history';
     <Container>
       <Wrapper>
         <TitleContainer>
-            <Title>CLASS 202</Title>
+          <TitleWrapper onClick={()=>(history.push('/'))}>
+            <Title >CLASS 202</Title>
+            </TitleWrapper>
         </TitleContainer>
         <IconContainer onClick={()=>(history.push('/cart'))}>
           <CartIcon/>
@@ -50,7 +52,9 @@ const Wrapper = styled.div`
 
 const TitleContainer = styled.div``;
 
-const Title = styled.div`
+const TitleWrapper = styled.div``
+
+const Title = styled.button`
   font-size: 3rem;
   color: white;
   text-align: center;
