@@ -6,7 +6,7 @@ import { RouteComponentProps,withRouter } from 'react-router-dom';
 import { History, LocationState } from 'history';
 
   function Header(props){
-    const { cartItems, history } = props;
+    const { cartList, history } = props;
     
   return (
     <Container>
@@ -18,7 +18,7 @@ import { History, LocationState } from 'history';
         </TitleContainer>
         <IconContainer onClick={()=>(history.push('/cart'))}>
           <CartIcon/>
-              <ProductNumber>{cartItems.length} </ProductNumber>
+              <ProductNumber>{cartList.length} </ProductNumber>
         </IconContainer>
       </Wrapper>
     </Container>
@@ -26,7 +26,7 @@ import { History, LocationState } from 'history';
 }
 
 const mapStateToProps = state => ({
-  cartItems : state.cart.items
+  cartList : state.cartList
 })
 
 export default withRouter(connect ( mapStateToProps )(Header));

@@ -5,6 +5,8 @@ import {
   removeFromCart,
   addToCart,
   minusFromCart,
+  removeFromOrderList,
+  plusOrderCounts,minusOrderCounts,controlCheck
 } from "../../Redux/Actions/index";
 import Header from "../../Components/Header/Header";
 import { CheckSquare } from "@styled-icons/boxicons-solid/CheckSquare";
@@ -13,34 +15,23 @@ import { Minus } from "@styled-icons/entypo/Minus";
 import { CloseSquareOutline } from "@styled-icons/evaicons-outline/CloseSquareOutline";
 
 const OrderList = (props) => {
-  const { cartItems, removeFromCart, addToCart, minusFromCart } = props;
-  const [selectedItem, setSelectedItem] = useState(cartItems);
+  console.log('order',props)
+  const { cartList, removeFromCart, orderList,minusOrderCounts, removeFromOrderList ,plusOrderCounts, controlCheck} = props;
+  const [selectedItem, setSelectedItem] = useState(cartList);
 
   useEffect(() => {
-    console.log(selectedItem);
   });
 
-  const handleMinimum = (cartItems, item) => {
-    if (item.count > 1) {
-      minusFromCart(cartItems, item);
+  const handleMinus = (item) => {
+    if(item.counts>1){
+      minusOrderCounts(item)
     }
-  };
+  }
 
-  const checkOrder = (item) => {
-    // if (selectedItem.filter((el) => el.id === item.id).length !== 0) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    console.log("sdfsdf: ", selectedItem);
-  };
-
-  const removeFromOrderList = (item) => {
-    console.log("remove");
-    console.log(item);
-    const newList = selectedItem.filter((el) => el.id !== item.id);
-    setSelectedItem(newList);
-  };
+  const handleRemove = (item) => {
+    removeFromCart(item);
+    removeFromOrderList(item)
+  }
 
   const addToOrderList = (item) => {
     console.log("add");
@@ -68,18 +59,18 @@ const OrderList = (props) => {
               </MenuTr>
             </TableHead>
             <TableBody>
-              {cartItems.map((item) => {
+              {orderList.map((item) => {
                 return (
                   <TableBodyTableRow>
                     <CheckTd>
-                      {checkOrder(item) ? (
+                   {item.selected ? (
                         <CheckButtonBox
-                          onClick={() => removeFromOrderList(item)}
+                          onClick={() => {controlCheck(item)}}
                         >
                           <CheckedIcon></CheckedIcon>
                         </CheckButtonBox>
                       ) : (
-                        <CheckButtonBox onClick={() => addToOrderList(item)}>
+                        <CheckButtonBox onClick={() => controlCheck(item)}>
                           <CheckedIcon style={{ color: "gray " }}></CheckedIcon>
                         </CheckButtonBox>
                       )}
@@ -91,22 +82,23 @@ const OrderList = (props) => {
                       </ImgWrapper>
                       <button
                         onClick={() => {
-                          removeFromCart(item);
+                          handleRemove(item)
                         }}
                       >
                         <RemoveIcon></RemoveIcon>
                       </button>
                     </InfoTd>
                     <CountsTd>
-                      <button onClick={() => handleMinimum(cartItems, item)}>
+                      <button onClick={() => {handleMinus(item)}}>
                         <MinusIcon></MinusIcon>
                       </button>
-                      <div>{item.count}</div>
-                      <button onClick={() => addToCart(cartItems, item)}>
+                      <div>{item.counts}</div>
+                      <button onClick={() =>
+                        plusOrderCounts(item)}>
                         <PlusIcon></PlusIcon>
                       </button>
                     </CountsTd>
-                    <PriceTd>{item.price * item.count}</PriceTd>
+                    <PriceTd>{item.price}</PriceTd>
                   </TableBodyTableRow>
                 );
               })}
@@ -119,12 +111,17 @@ const OrderList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  cartItems: state.cart.items,
+  cartList: state.cartList,
+  orderList : state.orderList
 });
+
 export default connect(mapStateToProps, {
   addToCart,
   removeFromCart,
-  minusFromCart,
+  removeFromOrderList,
+  plusOrderCounts,
+  minusOrderCounts,
+  controlCheck,
 })(OrderList);
 
 const Container = styled.div`
@@ -278,6 +275,8 @@ const RemoveIcon = styled(CloseSquareOutline)`
 `;
 
 const CheckButtonBox = styled.button`
+  color: ${props => props.selected ? "white" : "palevioletred"};
+
   :hover {
     cursor: pointer;
   }

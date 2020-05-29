@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 import cartList from '../Redux/Reducers/cartList'
+import orderList from '../Redux/Reducers/orderList'
 const rootReducer = combineReducers({
-  cart : cartList
+   cartList,
+   orderList
 });
 
 

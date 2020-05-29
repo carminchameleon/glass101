@@ -5,25 +5,10 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "Redux/rootReducer";
 import GlobalStyle from "styles/GlobalStyle";
-import thunk from "redux-thunk";
 
-const initialState = {};
-
-// if(localStorage.getItem('cartItems')){
-//   console.log(localStorage.getItem('cartItems'))
-//   initialState.cart = { items : JSON.parse(localStorage.getItem('cartItems'))}
-// }
-
-const composeEnhancer = window.__REDIX_DEVTOOLS_EXTENSTION__ || compose;
 
 ReactDOM.render(
-  <Provider
-    store={createStore(
-      rootReducer,
-      initialState,
-      composeEnhancer(applyMiddleware(thunk))
-    )}
-  >
+  <Provider store={createStore(rootReducer)}>
     <React.StrictMode>
       <GlobalStyle />
       <Routes />
@@ -32,4 +17,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-export default Routes;
+// export default Routes;
