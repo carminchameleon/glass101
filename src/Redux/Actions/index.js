@@ -1,55 +1,69 @@
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const MINUS_FROM_CART = "MINUS_FROM_CART";
+export const addToCart = (product) => {
+  return {
+    type: "ADD_TO_CART",
+    payload: product,
+  };
+};
 
-export const addToCart = (items, product) => (dispatch) => {
-  const cartItems = items.slice();
-  // 장바구니에 있는지 없는지를 체크
-  let productAlreadyIncart = false;
-  cartItems.forEach((item) => {
-    if (item.id === product.id) {
-      productAlreadyIncart = true;
-      item.count++;
+export const removeFromCart = (product) => {
+  return {
+    type: "REMOVE_FROM_CART",
+    payload: product,
+  };
+};
+
+export const addToOrderList = (product) => {
+  return {
+    type: "ADD_TO_ORDER_LIST",
+    payload: {
+      counts: 1,
+      selected : true,
+      ...product
+        }
+  };
+};
+
+export const removeFromOrderList = (product) => {
+  return {
+    type: "REMOVE_FROM_ORDER_LIST",
+    payload: product,
+  };
+};
+
+export const plusOrderCounts = (product) => {
+  return {
+    type: "PLUS_ORDER_COUNTS",
+    payload: product,
+  };
+}
+
+
+export const minusOrderCounts = ( product ) => {
+  return {
+    type: "MINUS_ORDER_COUNTS",
+    payload: product,
+  };
+}
+
+
+
+export const controlCheck = ( product ) => {
+  return {
+    type: "CONTROL_CHECK",
+    payload: {
+      selected: !product.selected,
+      ...product
     }
-  });
-  if (!productAlreadyIncart) {
-    cartItems.push({ ...product, count: 1 });
-  }
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  return dispatch({
-    type: ADD_TO_CART,
-    payload: {
-      cartItems: cartItems,
-    },
-  });
-};
+  };
+}
 
-export const minusFromCart = (items, product) => (dispatch) => {
-  const cartItems = items.slice();
-  // 장바구니에 있는지 없는지를 체크
-  let productAlreadyIncart = false;
-  cartItems.forEach((item) => {
-    if (item.id === product.id) {
-      productAlreadyIncart = true;
-      item.count--;
-    }
-  });
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  return dispatch({
-    type: MINUS_FROM_CART,
-    payload: {
-      cartItems: cartItems,
-    },
-  });
-};
 
-export const removeFromCart = (items, product) => (dispatch) => {
-  const cartItems = items.slice().filter((item) => item.id !== product.id);
-  localStorage.setItem("cartItems", cartItems);
-  return dispatch({
-    type: REMOVE_FROM_CART,
-    payload: {
-      cartItems,
-    },
-  });
-};
+export const controlAllCheck = ( boolean ) => {
+  return {
+    type: "CONTROL_ALL_CHECK",
+    payload: 
+      boolean
+  };
+}
+
+

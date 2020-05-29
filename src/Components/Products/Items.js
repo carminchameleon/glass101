@@ -1,33 +1,46 @@
-import React ,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
 import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart";
 import { connet } from "react-redux";
-import { addToCart, removeFromCart } from "../../Redux/Actions/index";
+import {
+  addToCart,
+  removeFromCart,
+  addToOrderList,
+  removeFromOrderList,
+} from "../../Redux/Actions/index";
+import { cloneDeep } from "lodash";
 
 const Items = (props) => {
-  const { data, addToCart, cartItems , removeFromCart} = props;
+  const {
+    data,
+    cartList,
+    addToCart,
+    removeFromCart,
+    addToOrderList,
+    removeFromOrderList,
+  } = props;
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
 
-  /// 카트 리스트에 추가 하는 것
-  const addCartList = (item) =>{
-    const newCartList = []
-    // 만약 카트가 비어 있다면, 
-     if(cart.length > 0){   
-      addToCart(cartItems, item)
-     }
-    }
-  
-  const handleCountsLimit = ( cartItems, item) => {
-    if(cartItems.length < 3){
-      addToCart(cartItems, item)
+  const handleAddCart = (item) => {
+    console.log(item)
+    if (cartList.length < 3) {
+      addToCart(item);
+      let clonedItem = cloneDeep(item);
+      addToOrderList(clonedItem);
     } else {
-      alert('아이템이 꽉찼습니다.')
+      alert("아이템이 꽉찼습니다.");
     }
-  }
- // 카트 안에 있는 아이템인지 아닌지 확인
+  };
+
+  const handleRemoveCart = (item) => {
+    removeFromCart(item);
+    removeFromOrderList(item);
+  };
+  
+  // 카트 안에 있는 아이템인지 아닌지 확인
   // const checkCartIn = (item) => {
   //    return (productItems.filter(product => product.id === item.id).length === 0)
   // }
@@ -56,24 +69,24 @@ const Items = (props) => {
                       <Price>{item.price.toLocaleString()}원</Price>
                     </PriceWrapper>
                   </PriceContainer>
-                  {cartItems.filter(product => product.id === item.id).length === 0 ?  
-                  <CartContainer>
-                    <CartWrapper>
-                    <CartTextBox onClick={()=>
-                      handleCountsLimit(cartItems, item)}
-                      >Add To Cart
-                      </CartTextBox>
-                    </CartWrapper>
-                  </CartContainer> :  
-                  <CartContainer>
-                    <CartWrapper>
-                    <CartTextBox onClick={()=>
-                     removeFromCart(cartItems, item)}
-                      >Remove From Cart
-                      </CartTextBox>
-                    
-                    </CartWrapper>
-                  </CartContainer>}
+                  {cartList.filter((product) => product.id === item.id)
+                    .length === 0 ? (
+                    <CartContainer>
+                      <CartWrapper>
+                        <CartTextBox onClick={() => handleAddCart(item)}>
+                          Add To Cart
+                        </CartTextBox>
+                      </CartWrapper>
+                    </CartContainer>
+                  ) : (
+                    <CartContainer>
+                      <CartWrapper>
+                        <CartTextBox onClick={() => handleRemoveCart(item)}>
+                          Remove From Cart
+                        </CartTextBox>
+                      </CartWrapper>
+                    </CartContainer>
+                  )}
                 </ProductBox>
               );
             })}
@@ -84,13 +97,16 @@ const Items = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  cartList: state.cartList,
+});
 
-const mapStateToProps = state => ({
-  cartItems : state.cart.items
-})
-
-
-export default connect(mapStateToProps, { addToCart , removeFromCart})(Items);
+export default connect(mapStateToProps, {
+  addToCart,
+  removeFromCart,
+  addToOrderList,
+  removeFromOrderList,
+})(Items);
 
 const Container = styled.div`
   max-width: 1300px;

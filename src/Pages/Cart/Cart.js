@@ -16,7 +16,7 @@ function Cart() {
 }
 
 const mapStateToProps = (state) => ({
-  cartItems: state.cart.items,
+  cartList: state.cartList,
 });
 
 export default connect(mapStateToProps, { removeFromCart })(Cart);
