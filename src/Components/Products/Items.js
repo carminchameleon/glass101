@@ -40,54 +40,35 @@ const Items = (props) => {
   };
   
   return (
-    <Container>
-      <Wrapper>
-        <Header>상품 List</Header>
-        <ProductContainer>
-          <ProductWrapper>
-            {data.map((item) => {
-              return (
-                <ProductBox key={item.id}>
-                  <ImageContainer>
-                    <ImageWrapper>
-                      <Image src={item.coverImage} alt="ProductImg"></Image>
-                    </ImageWrapper>
-                  </ImageContainer>
-                  <NameContainer>
-                    <NameWrapper>
-                      <Name>{item.title}</Name>
-                    </NameWrapper>
-                  </NameContainer>
-                  <PriceContainer>
-                    <PriceWrapper>
-                      <Price>{item.price.toLocaleString()}원</Price>
-                    </PriceWrapper>
-                  </PriceContainer>
-                  {cartList.filter((product) => product.id === item.id)
-                    .length === 0 ? (
-                    <CartContainer>
-                      <CartWrapper>
-                        <CartTextBox onClick={() => handleAddCart(item)}>
-                          Add To Cart
-                        </CartTextBox>
-                      </CartWrapper>
-                    </CartContainer>
-                  ) : (
-                    <CartContainer>
-                      <CartWrapper>
-                        <CartTextBox onClick={() => handleRemoveCart(item)}>
-                          Remove From Cart
-                        </CartTextBox>
-                      </CartWrapper>
-                    </CartContainer>
-                  )}
-                </ProductBox>
-              );
-            })}
-          </ProductWrapper>
-        </ProductContainer>
-      </Wrapper>
-    </Container>
+    <>
+    {data.map((item)=>{
+      return (
+        <ItemContainer key={item.id}>
+      <ItemWrapper>
+        <ImageContainer>
+          <PhotoBox>
+            <Photo src={item.coverImage} alt="ProductImg"></Photo>
+          </PhotoBox>
+        </ImageContainer>
+        <InfoContainer>
+          <InfoBox>
+            <NameBox>{item.title}</NameBox>
+            <PriceBox>
+              <Price>{item.price.toLocaleString()}원</Price>
+            </PriceBox>
+          </InfoBox>
+          <ButtonContainer>
+          <ButtonBox>
+            <Button>Add to Cart</Button>
+          </ButtonBox>
+          </ButtonContainer>
+        </InfoContainer>
+      </ItemWrapper>
+      </ItemContainer>
+  
+      )
+    })}
+    </>
   );
 };
 
@@ -102,123 +83,101 @@ export default connect(mapStateToProps, {
   removeFromOrderList,
 })(Items);
 
-const Container = styled.div`
-  max-width: 1300px;
-  height: 400px;
-  padding: 0 50px;
-  margin: 0 auto;
-`;
-const Wrapper = styled.div`
-  padding: 20px 0;
-`;
 
-const Header = styled.div`
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  color: #000;
-`;
+const ItemContainer = styled.li`
+    padding-left: 35px;
+    padding-bottom: 35px;
+    width: 33.3%;
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+    margin-bottom:50px;
+`
+const ItemWrapper = styled.div`
+     width:100%;
+     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+`
 
-const ProductContainer = styled.div`
-  margin-top: 30px;
-  height: 300px;
-`;
-const ProductWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
+const ImageContainer = styled.div`
+`
 
-const ProductBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 224px;
-  position: relative;
-`;
+const PhotoBox = styled.div`
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    border-radius:10px;
+`
 
-const ImageContainer = styled.div``;
+const Photo = styled.img`
+    width:100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition : transform 1s;
+    /* max-height: 450px; */
 
-const ImageWrapper = styled.div``;
 
-const Image = styled.img`
-  min-height: 184px;
-  :hover {
-    /* transform: scale(1.2); */
-    transition: transform 0.3s ease 0s, opacity 0.1s linear 0s;
-  }
-`;
+  :hover{ 
+    transform: scale(1.1);
+    transition : transform 1s;
+  }   
+`
 
-const NameContainer = styled.div`
-  margin-top: 15px;
-`;
-const NameWrapper = styled.div``;
-const Name = styled.div`
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
-  letter-spacing: -0.15px;
-  color: rgb(27, 28, 29);
-  height: 40px;
-  margin: 0px 0px 6px;
-`;
 
-const PriceContainer = styled.div``;
+const InfoContainer = styled.div` 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+   `
 
-const PriceWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-const Price = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: "Bebas Neue", cursive;
-`;
+    const InfoBox = styled.div`
+    padding: 20px;
+    `
+    const NameBox = styled.div`
+    text-align:center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    `
 
-const IconWrapper = styled.button`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  :hover {
-    cursor: pointer;
-  }
-`;
+    const PriceBox = styled.div`
+        display:flex;
+        justify-content:center;
+        flex-direction:row
+    `
+    const Price =  styled.div`
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height:2rem;
+    color: black;
+`
 
-export const RemoveIcon = styled(RemoveShoppingCart)`
-  color: yellow;
-  width: 20px;
-  height: 20px;
-  margin: 0 auto;
-`;
+const ButtonContainer = styled.div`
+width:100%;
+height: 50px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+`
 
-export const AddIcon = styled(AddShoppingCart)`
-  color: yellow;
-  width: 25px;
-  margin: 0 auto;
-`;
-
-const CartContainer = styled.div`
-  width: 100%;
-  background-color: black;
-  margin-top: 10px;
-  height: 35px;
-`;
-
-const CartWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const CartTextBox = styled.button`
-  color: yellow;
-  font-size: 1rem;
-  letter-spacing: 3px;
-  font-family: "Bebas Neue", cursive;
-  line-height: 2.4rem;
-  :hover {
-    cursor: pointer;
-  }
-`;
+const ButtonBox= styled.div`
+margin: 0 auto;
+border:3px solid #0435f3;
+width:40%;
+height: 100%;
+display:flex;
+flex-direction:row;
+justify-content:center;
+border-radius: 20px;
+`
+const Button = styled.div`
+font-size: 1rem;
+line-height:3rem;
+font-weight:400;
+color:#0435f3;
+`
