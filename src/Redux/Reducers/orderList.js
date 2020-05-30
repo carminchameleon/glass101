@@ -33,6 +33,14 @@ export default function orderList(state = initialState, action) {
             }
           })
         return listForControl;
+
+        case "CONTROL_ALL_CHECK":
+          let listForControlAll = state.slice()
+          listForControlAll.forEach((el) => {
+               el.selected = action.payload
+            }
+          )
+        return listForControlAll
         default:
       return state;
   }

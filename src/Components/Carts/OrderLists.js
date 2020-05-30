@@ -6,7 +6,7 @@ import {
   addToCart,
   minusFromCart,
   removeFromOrderList,
-  plusOrderCounts,minusOrderCounts,controlCheck
+  plusOrderCounts,minusOrderCounts,controlCheck,controlAllCheck
 } from "../../Redux/Actions/index";
 import Header from "../../Components/Header/Header";
 import { CheckSquare } from "@styled-icons/boxicons-solid/CheckSquare";
@@ -16,11 +16,12 @@ import { CloseSquareOutline } from "@styled-icons/evaicons-outline/CloseSquareOu
 
 const OrderList = (props) => {
   console.log('order',props)
-  const { cartList, removeFromCart, orderList,minusOrderCounts, removeFromOrderList ,plusOrderCounts, controlCheck} = props;
-  const [selectedItem, setSelectedItem] = useState(cartList);
+  const { cartList, removeFromCart, orderList,minusOrderCounts, removeFromOrderList ,plusOrderCounts, controlCheck,controlAllCheck} = props;
+  const [selected, setSelected] = useState(true);
 
-  useEffect(() => {
-  });
+  useEffect(()=>{
+    checkSelectedStatus()
+  }, [orderList])
 
   const handleMinus = (item) => {
     if(item.counts>1){
@@ -33,24 +34,37 @@ const OrderList = (props) => {
     removeFromOrderList(item)
   }
 
-  const addToOrderList = (item) => {
-    console.log("add");
-    console.log(item);
-    setSelectedItem(selectedItem.push(item));
-  };
+  const handleAllCheck = () => {
+   setSelected(!selected)
+   controlAllCheck(!selected)
+    // setTopButton(!topButton)
+  }
+
+  const checkSelectedStatus = () => {
+    const unSelectedNum = orderList.filter((el)=> el.selected === false).length
+    
+    if ( unSelectedNum !== 0 ){
+        // 만약 하나라도 선택이 안되어 있을 경우
+        setSelected(false)
+      } else {
+      ///  모두 선택되어 있을 경우
+      setSelected(true)
+    }
+    console.log(orderList.filter((el)=> el.selected === false).length)
+  }
+
 
   return (
     <Container>
       <Title>장바구니</Title>
-
       <Wrapper>
         <WrapperLine>
           <TableContainer>
             <TableHead>
               <MenuTr>
                 <CheckTh>
-                  <CheckButtonBox onClick={() => {}}>
-                    <CheckedIcon></CheckedIcon>
+                  <CheckButtonBox onClick={() => { handleAllCheck(selected)}}>
+                    <CheckedTopIcon style={ selected ? {color : "blue"} : {color : "gray" }}></CheckedTopIcon>
                   </CheckButtonBox>
                 </CheckTh>
                 <InfoTh>상품 정보</InfoTh>
@@ -61,7 +75,7 @@ const OrderList = (props) => {
             <TableBody>
               {orderList.map((item) => {
                 return (
-                  <TableBodyTableRow>
+                  <TableBodyTableRow key={item.id}>
                     <CheckTd>
                    {item.selected ? (
                         <CheckButtonBox
@@ -98,7 +112,7 @@ const OrderList = (props) => {
                         <PlusIcon></PlusIcon>
                       </button>
                     </CountsTd>
-                    <PriceTd>{item.price}</PriceTd>
+                    <PriceTd>{item.price * item.counts}</PriceTd>
                   </TableBodyTableRow>
                 );
               })}
@@ -122,6 +136,7 @@ export default connect(mapStateToProps, {
   plusOrderCounts,
   minusOrderCounts,
   controlCheck,
+  controlAllCheck
 })(OrderList);
 
 const Container = styled.div`
@@ -244,6 +259,16 @@ const CheckedIcon = styled(CheckSquare)`
   }
 `;
 
+
+const CheckedTopIcon = styled(CheckSquare)`
+  color: blue;
+  width: 35px;
+  margin: 0 auto;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 const PlusIcon = styled(Plus)`
   color: blue;
   width: 35px;
@@ -268,15 +293,12 @@ const RemoveIcon = styled(CloseSquareOutline)`
   color: blue;
   width: 35px;
   margin: 0 auto;
-
   :hover {
     cursor: pointer;
   }
 `;
 
 const CheckButtonBox = styled.button`
-  color: ${props => props.selected ? "white" : "palevioletred"};
-
   :hover {
     cursor: pointer;
   }
