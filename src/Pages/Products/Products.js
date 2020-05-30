@@ -42,7 +42,10 @@ const Product = () => {
     <Container>
       <Header cartItems={cartItems}></Header>
       <Section>
-        <MainTitle>글래스 IOI, 준비물까지 챙겨주는 온라인 클래스</MainTitle>
+        <MainTitleContainer>
+        <MainTitle>클래스 IOI, 준비물까지 챙겨주는 온라인 클래스</MainTitle>
+
+        </MainTitleContainer>
         <ItemContainer>
           <ItemWrapper>
             <ItemBox>
@@ -67,8 +70,6 @@ const Container = styled.div`
   width: 100%;
   height: 200vh;
   font-family: 'Gothic A1', sans-serif;
-  background-color:white;
-
 `;
 
 const Section = styled.section`
@@ -80,8 +81,15 @@ const Section = styled.section`
     padding-left: 66px;
     padding-right: 66px;
     clear: both;
-    border:1px solid black;
+
 `;
+const MainTitleContainer = styled.div`
+    padding: 40px 0;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 66px;
+    padding-right: 66px;
+    `
 
 const MainTitle = styled.div`
     padding: 40px 0;
@@ -90,8 +98,9 @@ const MainTitle = styled.div`
     padding-left: 66px;
     padding-right: 66px;
     font-size: 1.4rem;
-    color: blue;
-    font-weight:bold;
+    color: #0435f3;
+    background-color: #f8f8f8;
+    font-weight:bold;    
   `
 
   const ItemContainer = styled.div`

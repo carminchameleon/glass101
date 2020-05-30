@@ -59,9 +59,6 @@ function Payment(props) {
   
   const selectedItem = orderList.filter((el)=> el.selected === true)
 
-  // const checkselectedItem = () => {
-  //  console.log('선택된것',selectedItem)
-  // }
 
   return (
     <Container>

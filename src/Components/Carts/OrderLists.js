@@ -292,6 +292,7 @@ const MinusIcon = styled(Minus)`
 const RemoveIcon = styled(CloseSquareOutline)`
   color: blue;
   width: 35px;
+  
   margin: 0 auto;
   :hover {
     cursor: pointer;

@@ -63,12 +63,12 @@ const Title = styled.div`
   font-size: 3rem;
   letter-spacing:0.1rem;
   color: #0052db;
+
   text-align: center;
   font-weight:900;
   :hover {
     cursor: pointer;
-    color:#54a1a2;
-    transition: all 180ms ease-out 0s;
+ 
   }
 
 `;
