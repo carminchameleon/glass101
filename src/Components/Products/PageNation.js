@@ -29,11 +29,10 @@ export default PageNation;
 
 const Container = styled.div`
 width: 100%;
-height: 80px;
+padding-top:30px;
 display:flex;
 flex-direction:row;
 justify-content:center;
-
 `
 
 const Wrapper = styled.div`
@@ -43,16 +42,17 @@ justify-content:center;
 `
 
 const NumberBox = styled.div`
+border-top :4px solid #0052db
+
 `
 
 const Number = styled.button`
-font-size:2rem;
-color: gray;
-font-family: 'Gothic A1', sans-serif;
-
+font-size:3rem;
+font-weight: bold;
+color: #0052db;
 
 :hover {
     cursor: pointer;
-    color: black;
+    color: #006db3;
   }
 `

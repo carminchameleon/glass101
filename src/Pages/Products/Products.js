@@ -43,12 +43,15 @@ const Product = () => {
       <Header cartItems={cartItems}></Header>
       <Section>
         <MainTitle>글래스 IOI, 준비물까지 챙겨주는 온라인 클래스</MainTitle>
+        <ItemContainer>
+          <ItemWrapper>
+            <ItemBox>
+            <Items data={currentProducts}></Items>
+            </ItemBox>
+         
 
-        {/* <Items
-          data={currentProducts}
-        ></Items> */}
-
-        
+          </ItemWrapper>
+        </ItemContainer>        
         <PageNation
           productsPerPage={productsPerPage}
           totalProductsNumber={data.length}
@@ -64,22 +67,51 @@ const Container = styled.div`
   width: 100%;
   height: 200vh;
   font-family: 'Gothic A1', sans-serif;
+  background-color:white;
 
 `;
 
 const Section = styled.section`
-  width: 100%;
-  height: 100vh;
-  padding: 10% 8% 0 8%;  
-  border: 4px solid blue;
+    padding-top: 130px;
+    position: relative;
+    width: 1905px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 66px;
+    padding-right: 66px;
+    clear: both;
+    border:1px solid black;
 `;
 
 const MainTitle = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: 50px;
-  font-weight: bold;
-  background-color: #f8f8f8;
-  color: #0435f3;
-  font-size: 2rem;
+    padding: 40px 0;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 66px;
+    padding-right: 66px;
+    font-size: 1.4rem;
+    color: blue;
+    font-weight:bold;
   `
+
+  const ItemContainer = styled.div`
+    position: relative;
+    width: 1905px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 66px;
+    padding-right: 66px;
+    clear: both;
+     `
+
+  const ItemWrapper = styled.div`
+    clear: both;
+    margin-left: -35px;
+  `
+
+  const ItemBox = styled.ul`
+   width: 100%;
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content:flex-start;`
