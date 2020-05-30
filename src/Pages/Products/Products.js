@@ -41,16 +41,20 @@ const Product = () => {
   return (
     <Container>
       <Header cartItems={cartItems}></Header>
-      <Body>
-        <Items
+      <Section>
+        <MainTitle>글래스 IOI, 준비물까지 챙겨주는 온라인 클래스</MainTitle>
+
+        {/* <Items
           data={currentProducts}
-        ></Items>
+        ></Items> */}
+
+        
         <PageNation
           productsPerPage={productsPerPage}
           totalProductsNumber={data.length}
           paginate={paginate}
         ></PageNation>
-      </Body>
+      </Section>
     </Container>
   );
 };
@@ -59,15 +63,23 @@ export default Product;
 const Container = styled.div`
   width: 100%;
   height: 200vh;
-  border: 1px solid black;
+  font-family: 'Gothic A1', sans-serif;
+
 `;
 
-const Body = styled.section`
+const Section = styled.section`
   width: 100%;
-  height: 500px;
+  height: 100vh;
+  padding: 10% 8% 0 8%;  
+  border: 4px solid blue;
 `;
 
-const OrderList = styled.div`
+const MainTitle = styled.div`
   width: 100%;
-  height: 700px;
-`;
+  margin: 0 auto;
+  padding: 50px;
+  font-weight: bold;
+  background-color: #f8f8f8;
+  color: #0435f3;
+  font-size: 2rem;
+  `

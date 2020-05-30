@@ -2,12 +2,10 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
 ${reset}
 *{
   box-sizing : border-box;
   font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
 }
 
 body {
