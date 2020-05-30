@@ -25,7 +25,6 @@ const Items = (props) => {
   const [cart, setCart] = useState([]);
 
   const handleAddCart = (item) => {
-    console.log(item)
     if (cartList.length < 3) {
       addToCart(item);
       let clonedItem = cloneDeep(item);

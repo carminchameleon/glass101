@@ -1,24 +1,24 @@
 
 export const productItems = [
   {
-    id: 'B9vUv0E0ibc0X55kVVLr',
-    title: '포근한 니트로 만드는 나만의 글씨, 봉봉메이드 니트레터링 클래스',
-    coverImage: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
+   "id": 'B9vUv0E0ibc0X55kVVLr',
+    "title": '포근한 니트로 만드는 나만의 글씨, 봉봉메이드 니트레터링 클래스',
+    "coverImage": 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     price: 560000,
     score: 200,
   },
   {  
-    id: '81x83ysiEHsHCBoeVh2O',
-    title: '글씨가 주는 소소한 행복, Lettering Together!',
-      coverImage: 'https://cdn.class101.net/images/ec0f0c15-aeec-43a3-a0c9-b649b0999f0a',
+    "id": '81x83ysiEHsHCBoeVh2O',
+    "title": '글씨가 주는 소소한 행복, Lettering Together!',
+      "coverImage": 'https://cdn.class101.net/images/ec0f0c15-aeec-43a3-a0c9-b649b0999f0a',
     price: 320000,
     score: 300,
 
   },
   {
-    id: 'ZXV8mCcvbpXKm5J5snUq',
-    title: '붓펜으로 그려낸 보통날, 보통의 글씨',
-    coverImage: 'https://cdn.class101.net/images/a363a069-5aaf-40cb-822e-a2cab585c37e',
+    "id": 'ZXV8mCcvbpXKm5J5snUq',
+    "title": '붓펜으로 그려낸 보통날, 보통의 글씨',
+    "coverImage": 'https://cdn.class101.net/images/a363a069-5aaf-40cb-822e-a2cab585c37e',
     price: 240000,
     score: 350,
 

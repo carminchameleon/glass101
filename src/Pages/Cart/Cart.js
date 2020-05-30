@@ -11,6 +11,7 @@ function Cart() {
     <Container>
       <Header></Header>
       <OrderList />
+      <Payment />
     </Container>
   );
 }
