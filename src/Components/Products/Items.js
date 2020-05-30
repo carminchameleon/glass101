@@ -39,11 +39,6 @@ const Items = (props) => {
     removeFromOrderList(item);
   };
   
-  // 카트 안에 있는 아이템인지 아닌지 확인
-  // const checkCartIn = (item) => {
-  //    return (productItems.filter(product => product.id === item.id).length === 0)
-  // }
-
   return (
     <Container>
       <Wrapper>

@@ -28,7 +28,6 @@ export default PageNation;
 
 
 const Container = styled.div`
-font-family: "Bebas Neue", cursive;
 width: 100%;
 height: 80px;
 display:flex;
@@ -48,8 +47,9 @@ const NumberBox = styled.div`
 
 const Number = styled.button`
 font-size:2rem;
-font-family: "Bebas Neue", cursive;
 color: gray;
+font-family: 'Gothic A1', sans-serif;
+
 
 :hover {
     cursor: pointer;
