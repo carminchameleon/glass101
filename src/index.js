@@ -4,8 +4,7 @@ import Routes from "./Routes";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "Redux/rootReducer";
-import GlobalStyle from "styles/GlobalStyle";
-
+import GlobalStyle from "Styles/GlobalStyle";
 
 ReactDOM.render(
   <Provider store={createStore(rootReducer)}>
