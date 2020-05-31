@@ -31,7 +31,7 @@ export default PageNation;
 
 const Container = styled.div`
   width: 100%;
-  padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,7 +44,13 @@ const Wrapper = styled.div`
 `;
 
 const NumberBox = styled.div`
-  border-top: 4px solid #0052db;
+  padding: 5px;
+  border: 2px solid #0052db;
+  :hover {
+    cursor: pointer;
+    border: 2px solid #006db3;
+    transition: all 190ms ease-out 0s;
+  }
 `;
 
 const Number = styled.button`
@@ -54,5 +60,6 @@ const Number = styled.button`
   :hover {
     cursor: pointer;
     color: #006db3;
+    transition: all 190ms ease-out 0s;
   }
 `;
