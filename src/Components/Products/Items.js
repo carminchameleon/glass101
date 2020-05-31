@@ -150,12 +150,12 @@ const InfoContainer = styled.div`
 `;
 
 const InfoBox = styled.div`
-  padding: 30px;
+  padding: 20px;
 `;
 const NameBox = styled.div`
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
   font-weight: 700;
 `;
 
@@ -165,7 +165,7 @@ const PriceBox = styled.div`
   flex-direction: row;
 `;
 const Price = styled.div`
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 900;
   line-height: 2rem;
   color: gray;
@@ -173,7 +173,7 @@ const Price = styled.div`
 
 const ButtonContainer = styled.div`
   width: 100%;
-  height: 50px;
+  height: 35px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -182,7 +182,7 @@ const ButtonContainer = styled.div`
 const ButtonBox = styled.div`
   margin: 0 auto;
   border: 3px solid #0052db;
-  width: 40%;
+  width: 100px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -193,8 +193,9 @@ const ButtonBox = styled.div`
 `;
 
 const Button = styled.div`
-  font-size: 1.2rem;
-  line-height: 3rem;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 2rem;
   font-weight: 600;
   color: ${(props) => (props.inCart ? "white" : "#0052db")};
 `;

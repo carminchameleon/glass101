@@ -40,11 +40,10 @@ const Product = () => {
 
   return (
     <Container>
-      <Header cartItems={cartItems}></Header>
+      <Header ></Header>
       <Section>
         <MainTitleContainer>
         <MainTitle>클래스 IOI, 준비물까지 챙겨주는 온라인 클래스</MainTitle>
-
         </MainTitleContainer>
         <ItemContainer>
           <ItemWrapper>
@@ -75,16 +74,16 @@ const Container = styled.div`
 const Section = styled.section`
     padding-top: 130px;
     position: relative;
-    width: 1905px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 1405px;
     margin: 0 auto;
-    padding-left: 66px;
-    padding-right: 66px;
+    padding-left: 96px;
+    padding-right: 96px;
     clear: both;
 
 `;
 const MainTitleContainer = styled.div`
-    padding: 40px 0;
+    padding: 20px 0;
     max-width: 100%;
     margin: 0 auto;
     padding-left: 66px;
@@ -92,12 +91,12 @@ const MainTitleContainer = styled.div`
     `
 
 const MainTitle = styled.div`
-    padding: 40px 0;
+    padding: 30px 0;
     max-width: 100%;
     margin: 0 auto;
-    padding-left: 66px;
-    padding-right: 66px;
-    font-size: 1.4rem;
+    padding-left: 36px;
+    padding-right: 36px;
+    font-size: 1rem;
     color: #0435f3;
     background-color: #f8f8f8;
     font-weight:bold;    
@@ -105,14 +104,13 @@ const MainTitle = styled.div`
 
   const ItemContainer = styled.div`
     position: relative;
-    width: 1905px;
+    /* width: 1905px; */
     max-width: 100%;
     margin: 0 auto;
     padding-left: 66px;
     padding-right: 66px;
     clear: both;
      `
-
   const ItemWrapper = styled.div`
     clear: both;
     margin-left: -35px;
@@ -120,7 +118,7 @@ const MainTitle = styled.div`
 
   const ItemBox = styled.ul`
    width: 100%;
-  display:flex;
+   display:flex;
   flex-direction:row;
-  flex-wrap: wrap;
+   flex-wrap: wrap;
   justify-content:flex-start;`
