@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { RemoveShoppingCart } from "@styled-icons/material-outlined/RemoveShoppingCart";
-import { AddShoppingCart } from "@styled-icons/material-rounded/AddShoppingCart";
-import { connet } from "react-redux";
 import {
   addToCart,
   removeFromCart,
@@ -156,7 +153,8 @@ const NameBox = styled.div`
   text-align: center;
   margin-bottom: 10px;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 400;
+  color: #0052db;
 `;
 
 const PriceBox = styled.div`
@@ -166,9 +164,9 @@ const PriceBox = styled.div`
 `;
 const Price = styled.div`
   font-size: 0.9rem;
-  font-weight: 900;
+  font-weight: 200;
   line-height: 2rem;
-  color: gray;
+  color: #0052db;
 `;
 
 const ButtonContainer = styled.div`
@@ -181,15 +179,22 @@ const ButtonContainer = styled.div`
 
 const ButtonBox = styled.div`
   margin: 0 auto;
-  border: 3px solid #0052db;
-  width: 100px;
+
+  border: 3px solid ${(props) => (props.inCart ? "#b47af3" : "#0052db")};
+  width: 150px;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   border-radius: 20px;
-  background: ${(props) =>
-    props.inCart ? "linear-gradient(#54a1a2, #0435f3)" : "white"};
+  background-color: ${(props) => (props.inCart ? "#b47af3" : "white")};
+
+  :hover {
+    cursor: pointer;
+    border: 3px solid #b47af3;
+    color: #b47af3;
+    transition: all 300ms ease-out 0s;
+  }
 `;
 
 const Button = styled.div`

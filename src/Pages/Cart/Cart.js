@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import { connect } from "react-redux";
 import { removeFromCart } from "../../Redux/Actions/index";
+import styled from "styled-components";
 import Header from "../../Components/Header/Header";
 import OrderList from "../../Components/Carts/OrderLists";
 import Payment from "../../Components/Carts/Payment";
 import EmptyCart from "../../Components/Carts/EmptyCart";
+import Footer from "../../Components/Footer/Footer";
 function Cart(props) {
   const { cartList } = props;
-  /// 기본적으로 장바구니에 있는 모든 상품을 넣어줌
   return (
     <Container>
       <Header></Header>
@@ -21,9 +21,9 @@ function Cart(props) {
               ) : (
                 <>
                   <OrderList></OrderList>
+                  <Payment></Payment>
                 </>
               )}
-              <Payment></Payment>
             </ItemBox>
           </ItemWrapper>
         </ItemContainer>
@@ -59,12 +59,9 @@ const ItemContainer = styled.div`
   margin: 0 auto;
   padding-left: 66px;
   padding-right: 66px;
-  clear: both;
 `;
 
-const ItemWrapper = styled.div`
-  clear: both;
-`;
+const ItemWrapper = styled.div``;
 
 const ItemBox = styled.ul`
   width: 100%;

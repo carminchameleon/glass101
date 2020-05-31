@@ -43,19 +43,27 @@ const applyCoupon = (items, coupons) => {
 
 function Payment(props) {
   const { orderList } = props;
-  const [selectedList, setSelectedList] = useState([]);
   const [discountType, setDiscountType] = useState(0);
 
-  // const [coupon, setCoupon] = useState({
-  //   type: null,
-  //   factor: 0,
-  // });
-
-  // useEffect(() => {
-  //   // checkselectedItem()
-  // }, [orderList]);
-
   const selectedItem = orderList.filter((el) => el.selected === true);
+
+  const getFinalPrice = (discountType) => {
+    if (discountType === "1") {
+      return applyCoupon(selectedItem, coupons[0]);
+    } else if (discountType === "2") {
+      return applyCoupon(selectedItem, coupons[1]);
+    } else {
+      return selectedItem.reduce(
+        (acc, curr) => acc + curr.counts * curr.price,
+        0
+      );
+    }
+  };
+
+  useEffect(() => {
+    getFinalPrice(discountType);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discountType]);
 
   return (
     <Container>
@@ -86,14 +94,18 @@ function Payment(props) {
               </TitleBox>
             </OrderTitle>
             <OrderContents>
-              <CouponContainer> 쿠폰을 선택 해주세요 🐭 </CouponContainer>
+              <CouponContainer> 쿠폰을 선택 해주세요 </CouponContainer>
               <OptionContainer>
                 <DropdownContainer>
                   <Dropdown>
-                    <CouponTypeOptions>
+                    <CouponTypeOptions
+                      onChange={(e) => {
+                        setDiscountType(e.target.value);
+                      }}
+                    >
                       <CouponType value="0">적용안함</CouponType>
-                      <CouponType value="1">- 10% 할인 쿠폰</CouponType>
-                      <CouponType value="2"> - 10,000원 할인 쿠폰</CouponType>
+                      <CouponType value="1">-10% 할인 쿠폰</CouponType>
+                      <CouponType value="2">-10,000원 할인 쿠폰</CouponType>
                     </CouponTypeOptions>
                   </Dropdown>
                 </DropdownContainer>
@@ -108,21 +120,12 @@ function Payment(props) {
             </OrderTitle>
             <OrderContents>
               <OrderBox>
-                <OrderNumber></OrderNumber>
+                <OrderNumber>{getFinalPrice(discountType)}</OrderNumber>
               </OrderBox>
             </OrderContents>
           </OrderContainer>
         </WrapperLine>
       </Wrapper>
-      {/* <div>총가격</div>
-      <div>
-        {selectedItem.reduce((acc, curr) => acc + curr.counts * curr.price, 0)}
-      </div>
-      <div>5천원 쿠폰 적용 할인가</div>
-      <div>{applyCoupon(selectedItem, coupons[0])}</div>
-      <div></div>
-      <div>비율 할인 적용 가격</div>
-      <div>{applyCoupon(selectedItem, coupons[1])}</div> */}
     </Container>
   );
 }
@@ -235,7 +238,7 @@ const OptionContainer = styled.div`
 `;
 
 const DropdownContainer = styled.div`
-  width: 50%;
+  width: 60%;
   height: 100%;
 `;
 const Dropdown = styled.div`

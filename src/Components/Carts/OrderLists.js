@@ -4,14 +4,12 @@ import { connect } from "react-redux";
 import {
   removeFromCart,
   addToCart,
-  minusFromCart,
   removeFromOrderList,
   plusOrderCounts,
   minusOrderCounts,
   controlCheck,
   controlAllCheck,
 } from "../../Redux/Actions/index";
-import Header from "../../Components/Header/Header";
 import { CheckSquare } from "@styled-icons/boxicons-solid/CheckSquare";
 // import { CheckSquare } from "@styled-icons/boxicons-regular/CheckSquare";
 import { Plus } from "@styled-icons/evaicons-solid/Plus";
@@ -21,7 +19,6 @@ import { CloseSquareOutline } from "@styled-icons/evaicons-outline/CloseSquareOu
 const OrderList = (props) => {
   console.log("order", props);
   const {
-    cartList,
     removeFromCart,
     orderList,
     minusOrderCounts,
@@ -30,6 +27,7 @@ const OrderList = (props) => {
     controlCheck,
     controlAllCheck,
   } = props;
+
   const [selected, setSelected] = useState(true);
 
   const checkSelectedStatus = () => {
@@ -63,20 +61,7 @@ const OrderList = (props) => {
   const handleAllCheck = () => {
     setSelected(!selected);
     controlAllCheck(!selected);
-    // setTopButton(!topButton)
   };
-
-  // const unSelectedNum = orderList.filter((el) => el.selected === false)
-  //   .length;
-
-  // if (unSelectedNum !== 0) {
-  //   // 만약 하나라도 선택이 안되어 있을 경우
-  //   setSelected(false);
-  // } else {
-  //   ///  모두 선택되어 있을 경우
-  //   setSelected(true);
-  // }
-  // console.log(orderList.filter((el) => el.selected === false).length);
 
   return (
     <Container>
@@ -169,7 +154,6 @@ const OrderList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  cartList: state.cartList,
   orderList: state.orderList,
 });
 
@@ -401,49 +385,3 @@ const RemoveTd = styled.td`
   vertical-align: middle;
   text-align: center;
 `;
-
-{
-  /* {orderList.map((item) => {
-                return (
-                  <TableBodyTableRow key={item.id}>
-                    <CheckTd>
-                   {item.selected ? (
-                        <CheckButtonBox
-                          onClick={() => {controlCheck(item)}}
-                        >
-                          <CheckedIcon></CheckedIcon>
-                        </CheckButtonBox>
-                      ) : (
-                        <CheckButtonBox onClick={() => controlCheck(item)}>
-                          <CheckedIcon style={{ color: "gray " }}></CheckedIcon>
-                        </CheckButtonBox>
-                      )}
-                    </CheckTd>
-                    <InfoTd>
-                      <div>{item.title}</div>
-                      <ImgWrapper>
-                        <ProductImg src={item.coverImage}></ProductImg>
-                      </ImgWrapper>
-                      <button
-                        onClick={() => {
-                          handleRemove(item)
-                        }}
-                      >
-                        <RemoveIcon></RemoveIcon>
-                      </button>
-                    </InfoTd>
-                    <CountsTd>
-                      <button onClick={() => {handleMinus(item)}}>
-                        <MinusIcon></MinusIcon>
-                      </button>
-                      <div>{item.counts}</div>
-                      <button onClick={() =>
-                        plusOrderCounts(item)}>
-                        <PlusIcon></PlusIcon>
-                      </button>
-                    </CountsTd>
-                    <PriceTd>{item.price * item.counts}</PriceTd>
-                  </TableBodyTableRow>
-                );
-              })} */
-}
