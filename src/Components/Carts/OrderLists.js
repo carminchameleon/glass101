@@ -56,7 +56,7 @@ const OrderList = (props) => {
 
   return (
     <Container>
-      <Title>장바구니</Title>
+      <Title>Your Shopping Cart</Title>
       <Wrapper>
         <WrapperLine>
           <TableContainer>
@@ -64,16 +64,58 @@ const OrderList = (props) => {
               <MenuTr>
                 <CheckTh>
                   <CheckButtonBox onClick={() => { handleAllCheck(selected)}}>
-                    <CheckedTopIcon style={ selected ? {color : "blue"} : {color : "gray" }}></CheckedTopIcon>
+                    <CheckedTopIcon style={ selected ? {color : "#0052db"} : {color : "gray" }}></CheckedTopIcon>
                   </CheckButtonBox>
                 </CheckTh>
                 <InfoTh>상품 정보</InfoTh>
                 <CountsTh>상품 수량</CountsTh>
                 <PriceTh>주문 금액</PriceTh>
+                <RemoveTh></RemoveTh>
+                
               </MenuTr>
             </TableHead>
             <TableBody>
-              {orderList.map((item) => {
+                  <TableBodyTableRow>
+                    <CheckTd>
+                        <CheckButtonBox onClick={() => {}}>
+                          <CheckedIcon style={{ color: "gray " }}></CheckedIcon>
+                        </CheckButtonBox>
+                    </CheckTd>
+                    <InfoTd>
+                    <ImgWrapper>
+                       <ImgBox>
+                          <Img src="https://cdn.class101.net/images/a363a069-5aaf-40cb-822e-a2cab585c37e"></Img>
+                      </ImgBox>
+                  </ImgWrapper>
+                      <InfoContainer>
+                        <InfoWrapper>   
+                          <NameBox>
+                          평범한 일상에 색을 더하는 시간, 자토의 아이패드 드로잉
+                          </NameBox>
+                        <PerPriceBox>4000원</PerPriceBox>
+                        </InfoWrapper>
+                      </InfoContainer>
+                    </InfoTd>
+                    <CountsTd>
+                      <CountsContainer>
+                        <CountsWrapper>
+                          <MinusIcon></MinusIcon>
+                          <CountsNumberBox>
+                          <CountsNumber>3</CountsNumber>
+                          </CountsNumberBox>
+                          <PlusIcon></PlusIcon>
+                        </CountsWrapper>
+                      </CountsContainer>
+                    </CountsTd>
+                    <PriceTd>240,000원</PriceTd>
+                    <RemoveTd>
+                      <RemoveIcon></RemoveIcon>
+                    </RemoveTd>
+
+                  </TableBodyTableRow>
+                );
+              }
+              {/* {orderList.map((item) => {
                 return (
                   <TableBodyTableRow key={item.id}>
                     <CheckTd>
@@ -115,7 +157,7 @@ const OrderList = (props) => {
                     <PriceTd>{item.price * item.counts}</PriceTd>
                   </TableBodyTableRow>
                 );
-              })}
+              })} */}
             </TableBody>
           </TableContainer>
         </WrapperLine>
@@ -139,139 +181,202 @@ export default connect(mapStateToProps, {
   controlAllCheck
 })(OrderList);
 
-const Container = styled.div`
+const Container = styled.div` 
+/* border:1px solid yellow; */
   padding-top: 30px;
   position: relative;
   max-width: 1500px;
   min-width: 900px;
-  margin: 0 auto;
-  padding: 0 50px 200px;
-  border: 1px solid blue;
+  width: 100%;
+
 `;
 const Title = styled.div`
-  font-size: 1.9rem;
+  font-size: 1.4rem;
+  font-weight:200;
+  color:#0052db;
   margin: 20px;
+  margin-bottom: 40px;
+  text-align:center;
+  
 `;
 const Wrapper = styled.div`
-  padding-top: 20px;
+  width: 100%;
+
   margin-bottom: 3.75%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 const WrapperLine = styled.div`
-  border-top: 4px solid #000;
-  color: #4c4c4c;
-  font-size: 12px;
+  width: 100%;
+
 `;
 
 const TableContainer = styled.table`
-  table-layout: fixed;
   margin: 0 0 60px;
-  border-collapse: collapse;
   width: 100%;
   color: #999;
   min-width: 900px;
+
 `;
 
 const TableHead = styled.thead`
-  display: table-header-group;
   vertical-align: middle;
-  border-color: inherit;
 `;
 
 const MenuTr = styled.tr`
-  line-height: 1.172em;
-  color: #999;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: table-row;
-  height: 30px;
-  border-bottom: 1px solid #ddd;
-  font: 1.2rem "Bebas Neue", cursive;
+ border-bottom: 4px solid  #0052db;
+  font-size: 0.9rem;
+  line-height: 3rem;
+  font-weight: bold;
+  color:#0052db;
 `;
+
 const CheckTh = styled.th`
-  border: 1px solid blue;
-  width: 9%;
-  white-space: nowrap;
-  text-align: start;
+  width: 5%;
   :hover {
     cursor: pointer;
   }
 `;
-const InfoTh = styled.th`
-  border: 1px solid blue;
-`;
-const CountsTh = styled.th`
-  border: 1px solid blue;
-`;
-const PriceTh = styled.th`
-  border: 1px solid blue;
-`;
 
-const TableBody = styled.tbody``;
-
-const TableBodyTableRow = styled.tr`
-  height: 80px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-`;
-
-const CheckTd = styled.td`
-  border: 1px solid blue;
-  width: 9%;
-  white-space: nowrap;
-  text-align: start;
-  :hover {
-    cursor: pointer;
-  }
-`;
-const InfoTd = styled.td`
-  border: 1px solid blue;
-`;
-const CountsTd = styled.td`
-  border: 1px solid blue;
-  font-size: 16px;
-  font-weight: 700;
-`;
-const PriceTd = styled.td`
-  border: 1px solid blue;
-`;
-
-const ImgWrapper = styled.div`
-  display: block;
-  float: left;
-  width: 110px;
-  height: 110px;
-  padding: 3px 25px 0 0;
-`;
-
-const ProductImg = styled.img`
-    width:100%
-    height:100%;
-    `;
-
-const CheckedIcon = styled(CheckSquare)`
-  color: blue;
-  width: 35px;
-  margin: 0 auto;
-
-  :hover {
-    cursor: pointer;
-  }
+const CheckButtonBox = styled.div`
 `;
 
 
 const CheckedTopIcon = styled(CheckSquare)`
-  color: blue;
-  width: 35px;
-  margin: 0 auto;
+  color: #0052db;
+  width: 30px;
+`;
+
+
+const CheckedIcon = styled(CheckSquare)`
+  color: #0052db;
+  width: 30px;
+`;
+
+const InfoTh = styled.th`
+  width: 60%;
+`;
+
+const CountsTh = styled.th`
+`;
+
+const PriceTh = styled.th`
+`;
+
+const TableBody = styled.tbody`
+  vertical-align: middle;
+`;
+
+const TableBodyTableRow = styled.tr`
+  border-bottom: 1px solid #ddd;
+`;
+
+const CheckTd = styled.td`
+  vertical-align: middle;
+  text-align:center;
   :hover {
     cursor: pointer;
   }
 `;
 
+
+
+const InfoTd = styled.td`
+  vertical-align: middle;
+  display: flex;
+  flex-direction:row;
+`;
+
+const ImgWrapper = styled.div`
+width: 40%;
+padding:20px;
+padding-left: 0;
+`
+
+
+const ImgBox = styled.div`
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  padding-top: 66.25%;
+`
+
+const Img = styled.img`
+position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  height: auto;
+`
+
+
+const InfoContainer = styled.div`
+width: 60%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+`
+
+const InfoWrapper = styled.div`
+width: 100%;
+height: 100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding-left: 8px;
+`
+
+const NameBox = styled.div`
+font-size: 0.9rem;
+margin-bottom : 10px;
+color: black;
+`
+
+const PerPriceBox = styled.div`
+font-size: 0.9rem;
+
+`
+
+const CountsTd = styled.td`
+  vertical-align: middle;
+`;
+
+const CountsContainer= styled.div`
+height: 100%;
+width: 100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+`
+
+const CountsWrapper= styled.div`
+margin: 0 auto;
+height: 40px;
+width:80%;
+border:2px solid #0052db;
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+`
+const CountsNumberBox = styled.div`
+width: 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+`
+
+const CountsNumber =styled.div`
+margin: 0 auto;
+text-align:center;
+font-size: 1rem;
+color: #0052db;
+`
+
 const PlusIcon = styled(Plus)`
-  color: blue;
-  width: 35px;
+  color: #0052db;
+  width: 25px;
   margin: 0 auto;
 
   :hover {
@@ -280,27 +385,32 @@ const PlusIcon = styled(Plus)`
 `;
 
 const MinusIcon = styled(Minus)`
-  color: blue;
-  width: 35px;
+  color: #0052db;
+  width: 25px;
   margin: 0 auto;
-
   :hover {
     cursor: pointer;
   }
+`;
+
+
+const PriceTd = styled.td`
+  vertical-align:middle;
+  text-align:center;
+  font-size: 1rem;
+  color: #0052db;
 `;
 
 const RemoveIcon = styled(CloseSquareOutline)`
-  color: blue;
-  width: 35px;
-  
+  color: #0052db;
+  width: 30px;
   margin: 0 auto;
   :hover {
     cursor: pointer;
   }
 `;
+const RemoveTh = styled.th``
 
-const CheckButtonBox = styled.button`
-  :hover {
-    cursor: pointer;
-  }
-`;
+const RemoveTd = styled.td`
+vertical-align:middle;
+text-align:center;`

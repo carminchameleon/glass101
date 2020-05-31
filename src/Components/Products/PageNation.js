@@ -48,10 +48,9 @@ const NumberBox = styled.div`
 `;
 
 const Number = styled.button`
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #0052db;
-
   :hover {
     cursor: pointer;
     color: #006db3;

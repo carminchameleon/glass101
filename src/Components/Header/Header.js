@@ -12,7 +12,8 @@ import { History, LocationState } from 'history';
     <Container>
       <Wrapper>
         <TitleContainer>
-          <Title onClick={()=>(history.push('/'))}>GLASS I0I</Title>
+          <TitleLogo onClick={()=>(history.push('/'))} src="https://images.velog.io/images/carminchameleon/post/490f7d1f-f8a8-46d7-890e-8c6523455cd0/image.png" ></TitleLogo>
+          {/* <Title onClick={()=>(history.push('/'))}>GLASS I0I</Title> */}
         </TitleContainer>
         <CartContainer>
           <CartWrapper onClick={()=>(history.push('/cart'))}>
@@ -36,7 +37,7 @@ export default withRouter(connect ( mapStateToProps )(Header));
 
 const Container = styled.div`
   width: 100%;
-  height: 120px;
+  height: 70px;
   font-family: 'Gothic A1', sans-serif;
   position:fixed;
   z-index:10;
@@ -60,18 +61,23 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 3rem;
+  font-size: 2rem;
   letter-spacing:0.1rem;
   color: #0052db;
-
   text-align: center;
   font-weight:900;
   :hover {
     cursor: pointer;
- 
   }
-
 `;
+
+const TitleLogo = styled.img`
+width: 300px;
+height: auto;
+:hover {
+    cursor: pointer;
+  }s
+`
 
 const CartContainer = styled.div`
 width: 400px;
@@ -109,7 +115,7 @@ justify-content:center;
 `
 
 const CartCounts = styled.div`
-   font-size: 1.3rem;
+   font-size: 1rem;
    font-weight: 900;
    color: #0052db;
    line-height:1.5rem;
