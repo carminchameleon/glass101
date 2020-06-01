@@ -99,6 +99,10 @@ const ItemContainer = styled.li`
   flex-direction: column;
   justify-content: start;
   margin-bottom: 50px;
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+    min-width: 400px;
+  }
 `;
 
 const ItemWrapper = styled.div`

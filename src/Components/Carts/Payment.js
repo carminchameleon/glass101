@@ -4,6 +4,7 @@ import axios from "axios";
 import { COUPONS_URL } from "config";
 import styled from "styled-components";
 
+// Rate 쿠폰을 적용 했을 때의 가격을 계산하는 함수
 const applyRateCoupon = (rate, items) => {
   return items.reduce((acc, item) => {
     const { counts, price: pricePerCount, availableCoupon } = item;
@@ -14,12 +15,11 @@ const applyRateCoupon = (rate, items) => {
   }, 0);
 };
 
+// Amount 쿠폰을 적용 했을 때의 가격을 계산하는 함수
 const applyAmountCoupon = (amount, items) => {
-  // 쿠폰적용 가능한 가격
+  // 쿠폰 적용 가능 여부에 따라서 종류를 분리
   let softPrice = 0;
-  // 쿠폰 적용 불가능한 가격
   let hardPrice = 0;
-  //  쿠폰의 종류를 분리
   for (const item of items) {
     const { counts, price: pricePerCount, availableCoupon } = item;
     const price = pricePerCount * counts;
@@ -29,6 +29,7 @@ const applyAmountCoupon = (amount, items) => {
       hardPrice += price;
     }
   }
+  // 쿠폰 적용 가능 할 경우 계산
   const appliedSoftPrice = (() => {
     const result = softPrice - amount;
     return result < 0 ? 0 : result;
@@ -49,19 +50,7 @@ function Payment(props) {
 
   const selectedItem = orderList.filter((el) => el.selected === true);
 
-  const getFinalPrice = (discountType) => {
-    if (discountType === "1") {
-      return applyCoupon(selectedItem, coupons[0]);
-    } else if (discountType === "2") {
-      return applyCoupon(selectedItem, coupons[1]);
-    } else {
-      return selectedItem.reduce(
-        (acc, curr) => acc + curr.counts * curr.price,
-        0
-      );
-    }
-  };
-
+  // 쿠폰의 데이터를 받아오는 함수
   async function fetchCoupons() {
     try {
       // fetch data from a url endpoint
@@ -75,6 +64,20 @@ function Payment(props) {
   useEffect(() => {
     fetchCoupons();
   }, []);
+
+  //선택되어 있는 쿠폰의 종류에 따라서 최종 결제 가격을 계산 하는 함수
+  const getFinalPrice = (discountType) => {
+    if (discountType === "1") {
+      return applyCoupon(selectedItem, coupons[0]);
+    } else if (discountType === "2") {
+      return applyCoupon(selectedItem, coupons[1]);
+    } else {
+      return selectedItem.reduce(
+        (acc, curr) => acc + curr.counts * curr.price,
+        0
+      );
+    }
+  };
 
   useEffect(() => {
     getFinalPrice(discountType);
@@ -120,8 +123,13 @@ function Payment(props) {
                       }}
                     >
                       <CouponType value="0">적용안함</CouponType>
-                      <CouponType value="1">-10% 할인 쿠폰</CouponType>
-                      <CouponType value="2">-10,000원 할인 쿠폰</CouponType>
+                      {coupons.map((item, index) => {
+                        return (
+                          <CouponType key={index} value={index + 1}>
+                            {item.title}
+                          </CouponType>
+                        );
+                      })}
                     </CouponTypeOptions>
                   </Dropdown>
                 </DropdownContainer>
@@ -159,7 +167,6 @@ const Container = styled.div`
   padding-bottom: 70px;
   position: relative;
   max-width: 1500px;
-  min-width: 900px;
   width: 100%;
   color: #0052db;
 `;
@@ -184,6 +191,7 @@ const WrapperLine = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
+  min-width: 400px;
 `;
 
 const OrderContainer = styled.div`
@@ -239,6 +247,9 @@ const OrderNumber = styled.div`
   width: 100%;
   text-align: center;
   font-size: 1.3rem;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const CouponContainer = styled.div`
@@ -247,6 +258,10 @@ const CouponContainer = styled.div`
   text-align: center;
   line-height: 3rem;
   margin-bottom: 5px;
+  @media only screen and (max-width: 1024px) {
+    line-height: 2rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const OptionContainer = styled.div`
@@ -283,6 +298,9 @@ const Dropdown = styled.div`
     appearance: none;
     -webkit-appearance: none;
     font-style: italic;
+    @media only screen and (max-width: 479px) {
+      font-size: 0.7rem;
+    }
   }
 `;
 

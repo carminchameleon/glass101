@@ -28,11 +28,19 @@ const Container = styled.div`
 
 const Title = styled.div`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 200;
   color: #0052db;
   margin: 80px;
   margin-bottom: 40px;
   text-align: center;
+  @media only screen and (max-width: 1024px) {
+    font-size: 1rem;
+    margin: 0px;
+    margin-bottom: 40px;
+  }
+  @media only screen and (max-width: 479px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -65,5 +73,10 @@ const Button = styled.div`
     color: #b47af3;
     border: 2px solid #b47af3;
     transition: all 190ms ease-out 0s;
+  }
+  @media only screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+    width: 200px;
+    padding-top: 20px;
   }
 `;

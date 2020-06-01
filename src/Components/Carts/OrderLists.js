@@ -173,7 +173,6 @@ const Container = styled.div`
   padding-top: 30px;
   position: relative;
   max-width: 1500px;
-  min-width: 900px;
   width: 100%;
 `;
 
@@ -199,7 +198,7 @@ const TableContainer = styled.table`
   margin: 0 0 60px;
   width: 100%;
   color: #999;
-  min-width: 900px;
+  min-width: 400px;
 `;
 
 const TableHead = styled.thead`
@@ -212,6 +211,9 @@ const MenuTr = styled.tr`
   line-height: 3rem;
   font-weight: bold;
   color: #0052db;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const CheckTh = styled.th`
@@ -230,12 +232,24 @@ const CheckedTopIcon = styled(CheckSquare)`
     color: #b47af3;
     transition: all 190ms ease-out 0s;
   }
+  @media only screen and (max-width: 479px) {
+    width: 20px;
+  }
 `;
 
 const CheckedIcon = styled(CheckSquare)`
   color: ${(props) => (props.inOrder ? "#0052db" : "gray")};
   opacity: ${(props) => (props.inOrder ? 1 : 0.6)};
   width: 30px;
+
+  :hover {
+    cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
+  }
+  @media only screen and (max-width: 479px) {
+    width: 20px;
+  }
 `;
 
 const InfoTh = styled.th`
@@ -252,6 +266,9 @@ const TableBody = styled.tbody`
 
 const TableBodyTableRow = styled.tr`
   border-bottom: 1px solid #0052db;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const CheckTd = styled.td`
@@ -312,12 +329,17 @@ const InfoWrapper = styled.div`
 
 const NameBox = styled.div`
   font-size: 0.9rem;
-  margin-bottom: 10px;
   color: black;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const PerPriceBox = styled.div`
   font-size: 0.9rem;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const CountsTd = styled.td`
@@ -353,6 +375,9 @@ const CountsNumber = styled.div`
   text-align: center;
   font-size: 1rem;
   color: #0052db;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const PlusIcon = styled(Plus)`
@@ -365,6 +390,9 @@ const PlusIcon = styled(Plus)`
     color: #b47af3;
     transition: all 190ms ease-out 0s;
   }
+  @media only screen and (max-width: 479px) {
+    width: 15px;
+  }
 `;
 
 const MinusIcon = styled(Minus)`
@@ -376,6 +404,9 @@ const MinusIcon = styled(Minus)`
     color: #b47af3;
     transition: all 190ms ease-out 0s;
   }
+  @media only screen and (max-width: 479px) {
+    width: 15px;
+  }
 `;
 
 const PriceTd = styled.td`
@@ -383,6 +414,9 @@ const PriceTd = styled.td`
   text-align: center;
   font-size: 1rem;
   color: #0052db;
+  @media only screen and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const RemoveIcon = styled(CloseSquareOutline)`
@@ -393,6 +427,9 @@ const RemoveIcon = styled(CloseSquareOutline)`
     cursor: pointer;
     color: #b47af3;
     transition: all 190ms ease-out 0s;
+  }
+  @media only screen and (max-width: 479px) {
+    width: 15px;
   }
 `;
 const RemoveTh = styled.th``;

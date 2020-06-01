@@ -18,7 +18,9 @@ function Header(props) {
         </TitleContainer>
         <CartContainer>
           <CartWrapper onClick={() => history.push("/cart")}>
-            <CartIcon></CartIcon>
+            <CartIconBox>
+              <CartIcon></CartIcon>
+            </CartIconBox>
             <CartCountsWrapper>
               <CartCounts>{cartList.length}</CartCounts>
             </CartCountsWrapper>
@@ -66,6 +68,12 @@ const TitleLogo = styled.img`
   :hover {
     cursor: pointer;
   }
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 250px;
+  }
+  @media only screen and (max-width: 767px) {
+    width: 200px;
+  }
 `;
 
 const CartContainer = styled.div`
@@ -85,6 +93,11 @@ const CartWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-end;
 `;
+const CartIconBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 export const CartIcon = styled(Cart)`
   color: #0052db;
@@ -93,6 +106,15 @@ export const CartIcon = styled(Cart)`
     color: #b47af3;
     cursor: pointer;
     transition: all 190ms ease-out 0s;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    height: 35px;
+  }
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    height: 30px;
+  }
+  @media only screen and (max-width: 479px) {
+    height: 20px;
   }
 `;
 

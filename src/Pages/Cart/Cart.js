@@ -10,7 +10,7 @@ function Cart(props) {
   const { cartList } = props;
   return (
     <Container>
-      <Header></Header>
+      <Header />
       <Section>
         <ItemContainer>
           <ItemWrapper>
@@ -40,6 +40,7 @@ export default connect(mapStateToProps)(Cart);
 const Container = styled.div`
   width: 100%;
   font-family: "Gothic A1", sans-serif;
+  min-width: 400px;
 `;
 
 const Section = styled.section`
@@ -50,6 +51,10 @@ const Section = styled.section`
   margin: 0 auto;
   padding-left: 96px;
   padding-right: 96px;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const ItemContainer = styled.div`
@@ -58,6 +63,10 @@ const ItemContainer = styled.div`
   margin: 0 auto;
   padding-left: 66px;
   padding-right: 66px;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const ItemWrapper = styled.div``;
