@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore } from "redux";
 import rootReducer from "Redux/rootReducer";
 import GlobalStyle from "Styles/GlobalStyle";
 
@@ -15,5 +15,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-// export default Routes;

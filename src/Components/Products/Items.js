@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import {
   addToCart,
@@ -8,6 +7,7 @@ import {
   removeFromOrderList,
 } from "../../Redux/Actions/index";
 import { cloneDeep } from "lodash";
+import styled from "styled-components";
 
 const Items = (props) => {
   const {
@@ -25,7 +25,7 @@ const Items = (props) => {
       let clonedItem = cloneDeep(item);
       addToOrderList(clonedItem);
     } else {
-      alert("아이템이 꽉찼습니다.");
+      alert("아이쿠! 장바구니가 다 차버렸어요 ㅠㅠ  결제를 하러 가볼까요? 🥰");
     }
   };
 
@@ -44,11 +44,7 @@ const Items = (props) => {
         };
         return (
           <ItemContainer key={item.id}>
-            <ItemWrapper
-              onClick={() => {
-                cartCheck(item) ? handleRemoveCart(item) : handleAddCart(item);
-              }}
-            >
+            <ItemWrapper>
               <ImageContainer>
                 <PhotoBox>
                   <Photo src={item.coverImage} alt="ProductImg"></Photo>
@@ -63,7 +59,11 @@ const Items = (props) => {
                 </InfoBox>
                 <ButtonContainer>
                   <ButtonBox
-                    onClick={() => handleAddCart(item)}
+                    onClick={() => {
+                      cartCheck(item)
+                        ? handleRemoveCart(item)
+                        : handleAddCart(item);
+                    }}
                     inCart={cartCheck(item)}
                   >
                     <Button inCart={cartCheck(item)}>
@@ -99,10 +99,8 @@ const ItemContainer = styled.li`
   flex-direction: column;
   justify-content: start;
   margin-bottom: 50px;
-  :hover {
-    cursor: pointer;
-  }
 `;
+
 const ItemWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -149,6 +147,7 @@ const InfoContainer = styled.div`
 const InfoBox = styled.div`
   padding: 20px;
 `;
+
 const NameBox = styled.div`
   text-align: center;
   margin-bottom: 10px;
@@ -179,14 +178,13 @@ const ButtonContainer = styled.div`
 
 const ButtonBox = styled.div`
   margin: 0 auto;
-
-  border: 3px solid ${(props) => (props.inCart ? "#b47af3" : "#0052db")};
+  border: 2px solid ${(props) => (props.inCart ? "#b47af3" : "#0052db")};
   width: 150px;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 1px;
   background-color: ${(props) => (props.inCart ? "#b47af3" : "white")};
 
   :hover {
@@ -201,6 +199,6 @@ const Button = styled.div`
   text-align: center;
   font-size: 0.7rem;
   line-height: 2rem;
-  font-weight: 600;
+  font-weight: 900;
   color: ${(props) => (props.inCart ? "white" : "#0052db")};
 `;

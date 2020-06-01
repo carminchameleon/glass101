@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
-import { coupons } from "./coupons";
+import axios from "axios";
+import { COUPONS_URL } from "config";
+import styled from "styled-components";
 
 const applyRateCoupon = (rate, items) => {
   return items.reduce((acc, item) => {
@@ -43,6 +44,7 @@ const applyCoupon = (items, coupons) => {
 
 function Payment(props) {
   const { orderList } = props;
+  const [coupons, setCoupons] = useState([]);
   const [discountType, setDiscountType] = useState(0);
 
   const selectedItem = orderList.filter((el) => el.selected === true);
@@ -59,6 +61,20 @@ function Payment(props) {
       );
     }
   };
+
+  async function fetchCoupons() {
+    try {
+      // fetch data from a url endpoint
+      const data = await axios.get(`${COUPONS_URL}`);
+      setCoupons(data.data.coupons);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchCoupons();
+  }, []);
 
   useEffect(() => {
     getFinalPrice(discountType);
@@ -79,10 +95,10 @@ function Payment(props) {
             <OrderContents>
               <OrderBox>
                 <OrderNumber>
-                  {selectedItem.reduce(
-                    (acc, curr) => acc + curr.counts * curr.price,
-                    0
-                  )}
+                  {selectedItem
+                    .reduce((acc, curr) => acc + curr.counts * curr.price, 0)
+                    .toLocaleString()}
+                  원
                 </OrderNumber>
               </OrderBox>
             </OrderContents>
@@ -120,7 +136,9 @@ function Payment(props) {
             </OrderTitle>
             <OrderContents>
               <OrderBox>
-                <OrderNumber>{getFinalPrice(discountType)}</OrderNumber>
+                <OrderNumber>
+                  {getFinalPrice(discountType).toLocaleString()}원
+                </OrderNumber>
               </OrderBox>
             </OrderContents>
           </OrderContainer>
@@ -137,7 +155,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Payment);
 
 const Container = styled.div`
-  padding-top: 30px;
+  padding: 30px 0;
+  padding-bottom: 70px;
   position: relative;
   max-width: 1500px;
   min-width: 900px;
@@ -147,7 +166,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   font-size: 1.4rem;
-  font-weight: 200;
+  font-weight: 500;
   color: #0052db;
   margin: 20px;
   margin-bottom: 40px;
@@ -219,6 +238,7 @@ const OrderNumber = styled.div`
   margin: 0 auto;
   width: 100%;
   text-align: center;
+  font-size: 1.3rem;
 `;
 
 const CouponContainer = styled.div`
@@ -241,6 +261,7 @@ const DropdownContainer = styled.div`
   width: 60%;
   height: 100%;
 `;
+
 const Dropdown = styled.div`
   height: 100%;
   line-height: 2.5rem;

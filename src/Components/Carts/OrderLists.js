@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   removeFromCart,
@@ -10,14 +9,13 @@ import {
   controlCheck,
   controlAllCheck,
 } from "../../Redux/Actions/index";
+import styled from "styled-components";
 import { CheckSquare } from "@styled-icons/boxicons-solid/CheckSquare";
-// import { CheckSquare } from "@styled-icons/boxicons-regular/CheckSquare";
 import { Plus } from "@styled-icons/evaicons-solid/Plus";
 import { Minus } from "@styled-icons/entypo/Minus";
 import { CloseSquareOutline } from "@styled-icons/evaicons-outline/CloseSquareOutline";
 
 const OrderList = (props) => {
-  console.log("order", props);
   const {
     removeFromCart,
     orderList,
@@ -111,7 +109,9 @@ const OrderList = (props) => {
                       <InfoContainer>
                         <InfoWrapper>
                           <NameBox>{item.title}</NameBox>
-                          <PerPriceBox>{item.price}</PerPriceBox>
+                          <PerPriceBox>
+                            {item.price.toLocaleString()}원
+                          </PerPriceBox>
                         </InfoWrapper>
                       </InfoContainer>
                     </InfoTd>
@@ -134,7 +134,9 @@ const OrderList = (props) => {
                         </CountsWrapper>
                       </CountsContainer>
                     </CountsTd>
-                    <PriceTd>{item.price * item.counts}</PriceTd>
+                    <PriceTd>
+                      {(item.price * item.counts).toLocaleString()}원
+                    </PriceTd>
                     <RemoveTd>
                       <RemoveIcon
                         onClick={() => {
@@ -174,18 +176,21 @@ const Container = styled.div`
   min-width: 900px;
   width: 100%;
 `;
+
 const Title = styled.div`
   font-size: 1.4rem;
-  font-weight: 200;
+  font-weight: 500;
   color: #0052db;
   margin: 20px;
   margin-bottom: 40px;
   text-align: center;
 `;
+
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 3.75%;
 `;
+
 const WrapperLine = styled.div`
   width: 100%;
 `;
@@ -211,27 +216,30 @@ const MenuTr = styled.tr`
 
 const CheckTh = styled.th`
   width: 5%;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const CheckButtonBox = styled.div``;
 
 const CheckedTopIcon = styled(CheckSquare)`
-  color: #0052db;
   width: 30px;
   color: ${(props) => (props.selected ? "#0052db" : "gray")};
+  opacity: ${(props) => (props.selected ? 1 : 0.6)};
+
+  :hover {
+    cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
+  }
 `;
 
 const CheckedIcon = styled(CheckSquare)`
   color: ${(props) => (props.inOrder ? "#0052db" : "gray")};
-
+  opacity: ${(props) => (props.inOrder ? 1 : 0.6)};
   width: 30px;
 `;
 
 const InfoTh = styled.th`
-  width: 60%;
+  width: 65%;
 `;
 
 const CountsTh = styled.th``;
@@ -251,6 +259,8 @@ const CheckTd = styled.td`
   text-align: center;
   :hover {
     cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
   }
 `;
 
@@ -352,6 +362,8 @@ const PlusIcon = styled(Plus)`
 
   :hover {
     cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
   }
 `;
 
@@ -361,6 +373,8 @@ const MinusIcon = styled(Minus)`
   margin: 0 auto;
   :hover {
     cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
   }
 `;
 
@@ -377,6 +391,8 @@ const RemoveIcon = styled(CloseSquareOutline)`
   margin: 0 auto;
   :hover {
     cursor: pointer;
+    color: #b47af3;
+    transition: all 190ms ease-out 0s;
   }
 `;
 const RemoveTh = styled.th``;

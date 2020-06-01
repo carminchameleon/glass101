@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
 
 const EmptyCart = (props) => {
   const { history } = props;
@@ -23,13 +23,12 @@ const Container = styled.div`
   padding-top: 15%;
   position: relative;
   max-width: 1500px;
-  min-width: 900px;
   width: 100%;
 `;
 
 const Title = styled.div`
   font-size: 2rem;
-  font-weight: 200;
+  font-weight: 500;
   color: #0052db;
   margin: 80px;
   margin-bottom: 40px;

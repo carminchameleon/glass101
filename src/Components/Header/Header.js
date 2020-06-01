@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { Cart } from "@styled-icons/evil/Cart";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { Cart } from "@styled-icons/evil/Cart";
 
 function Header(props) {
   const { cartList, history } = props;
@@ -58,17 +58,6 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-`;
-
-const Title = styled.div`
-  font-size: 2rem;
-  letter-spacing: 0.1rem;
-  color: #0052db;
-  text-align: center;
-  font-weight: 900;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const TitleLogo = styled.img`
