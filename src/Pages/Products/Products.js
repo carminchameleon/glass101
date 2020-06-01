@@ -85,6 +85,10 @@ const Section = styled.section`
   margin: 0 auto;
   padding-left: 96px;
   padding-right: 96px;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 const MainTitleContainer = styled.div`
   padding: 20px 0;
@@ -92,6 +96,10 @@ const MainTitleContainer = styled.div`
   margin: 0 auto;
   padding-left: 66px;
   padding-right: 66px;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const Title = styled.div`
@@ -105,12 +113,13 @@ const Title = styled.div`
 
 const ItemContainer = styled.div`
   position: relative;
-  /* width: 1905px; */
   max-width: 100%;
   margin: 0 auto;
   padding-left: 66px;
   padding-right: 66px;
-  clear: both;
+  @media only screen and (max-width: 479px) {
+    padding: 0;
+  }
 `;
 const ItemWrapper = styled.div`
   clear: both;
