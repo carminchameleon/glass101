@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { removeFromCart } from "../../Redux/Actions/index";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
 import OrderList from "../../Components/Carts/OrderLists";
 import Payment from "../../Components/Carts/Payment";
 import EmptyCart from "../../Components/Carts/EmptyCart";
-import Footer from "../../Components/Footer/Footer";
+
 function Cart(props) {
   const { cartList } = props;
   return (
@@ -36,7 +35,7 @@ const mapStateToProps = (state) => ({
   cartList: state.cartList,
 });
 
-export default connect(mapStateToProps, { removeFromCart })(Cart);
+export default connect(mapStateToProps)(Cart);
 
 const Container = styled.div`
   width: 100%;

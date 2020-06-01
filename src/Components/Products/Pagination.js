@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const PageNation = (props) => {
-  const { totalProductsNumber, productsPerPage, paginate } = props;
+const Pagination = (props) => {
+  console.log(props);
+  const { totalProductsNumber, productsPerPage, paginate, currentPage } = props;
   const pageNumbers = [];
 
   // 전체의 포스트 중에서 한번에 보여주어야 하는 페이지만. 100개 인데, 한번에 보여주고 싶은게 10개라면, 10개의 인덱스 리스트가 생김
@@ -15,8 +16,15 @@ const PageNation = (props) => {
       <Wrapper>
         <NumberBox>
           {pageNumbers.map((num) => {
+            const pageCheck = (num) => {
+              return currentPage === num;
+            };
             return (
-              <Number key={num} onClick={() => paginate(num)}>
+              <Number
+                currentPage={pageCheck(num)}
+                key={num}
+                onClick={() => paginate(num)}
+              >
                 {num}
               </Number>
             );
@@ -27,7 +35,7 @@ const PageNation = (props) => {
   );
 };
 
-export default PageNation;
+export default Pagination;
 
 const Container = styled.div`
   width: 100%;
@@ -56,7 +64,7 @@ const NumberBox = styled.div`
 const Number = styled.button`
   font-size: 2rem;
   font-weight: bold;
-  color: #0052db;
+  color: ${(props) => (props.currentPage ? "#b47af3" : "#0052db")};
   :hover {
     cursor: pointer;
     color: #006db3;
