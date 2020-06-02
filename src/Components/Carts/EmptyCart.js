@@ -10,7 +10,9 @@ const EmptyCart = (props) => {
       <Title>웁스! 장바구니가 비었습니다.</Title>
       <ButtonContainer>
         <ButtonWrapper>
-          <Button onClick={() => history.push("/")}>CONTINUE SHOPPING</Button>
+          <Button onClick={() => history.push("/products")}>
+            CONTINUE SHOPPING
+          </Button>
         </ButtonWrapper>
       </ButtonContainer>
     </Container>

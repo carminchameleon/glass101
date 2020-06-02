@@ -293,12 +293,20 @@ const InfoTd = styled.td`
   vertical-align: middle;
   display: flex;
   flex-direction: row;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 const ImgWrapper = styled.div`
   width: 40%;
   padding: 20px;
   padding-left: 0;
+
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const ImgBox = styled.div`
@@ -324,6 +332,10 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 6px;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -337,22 +349,17 @@ const InfoWrapper = styled.div`
 
 const NameBox = styled.div`
   font-size: 0.9rem;
+  margin-bottom: 7px;
   color: black;
-  @media only screen and (max-width: 767px) {
-    font-size: 0.7rem;
-  }
   @media only screen and (max-width: 479px) {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 `;
 
 const PerPriceBox = styled.div`
   font-size: 0.9rem;
-  @media only screen and (max-width: 767px) {
-    font-size: 0.7rem;
-  }
   @media only screen and (max-width: 479px) {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -377,6 +384,7 @@ const CountsWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
+
 const CountsNumberBox = styled.div`
   width: 20px;
   display: flex;
