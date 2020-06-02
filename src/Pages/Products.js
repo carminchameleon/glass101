@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PRODUCT_LIST_URL } from "config";
 import styled from "styled-components";
-import Header from "../../Components/Header/Header";
+import Header from "Components/Header/Header";
 import Items from "Components/Products/Items";
 import Pagination from "Components/Products/Pagination";
 
@@ -18,15 +18,18 @@ const Product = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
-
-  // get current posts
   const indexOfLastPost = currentPage * productsPerPage;
   const indexOfFirstPost = indexOfLastPost - productsPerPage;
   const currentProducts = data.slice(indexOfFirstPost, indexOfLastPost);
 
+  // paginate에서 숫자를 넘겨 받으면, 그 인덱스가 setCurrentPage로 들어감
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
   async function fetchProductList() {
     try {
-      // fetch data from a url endpoint
       const data = await axios.get(`${PRODUCT_LIST_URL}`);
       setData(sortItem(data.data.productItems));
     } catch (error) {
@@ -38,16 +41,9 @@ const Product = () => {
     fetchProductList();
   }, []);
 
-  //Change Page
-  // paginate에서 숫자를 넘겨 받으면, 그 인덱스가 setCurrentPage로 들어감
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
-  };
-
   return (
     <Container>
-      <Header></Header>
+      <Header />
       <Section>
         <MainTitleContainer>
           <Title>Shopping List</Title>
@@ -109,6 +105,9 @@ const Title = styled.div`
   margin: 20px;
   margin-bottom: 40px;
   text-align: center;
+  @media only screen and (max-width: 479px) {
+    font-size: 1rem;
+  }
 `;
 
 const ItemContainer = styled.div`

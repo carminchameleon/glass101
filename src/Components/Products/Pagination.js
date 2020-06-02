@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Pagination = (props) => {
-  console.log(props);
   const { totalProductsNumber, productsPerPage, paginate, currentPage } = props;
   const pageNumbers = [];
 

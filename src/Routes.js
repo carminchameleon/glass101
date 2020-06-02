@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Product from "Pages/Products/Products";
-import Cart from "Pages/Cart/Cart";
+import Product from "Pages/Products";
+import Cart from "Pages/Cart";
 
 class Routes extends React.Component {
   render() {

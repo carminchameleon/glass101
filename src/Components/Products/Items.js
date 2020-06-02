@@ -5,7 +5,7 @@ import {
   removeFromCart,
   addToOrderList,
   removeFromOrderList,
-} from "../../Redux/Actions/index";
+} from "Redux/Actions/index";
 import { cloneDeep } from "lodash";
 import styled from "styled-components";
 
