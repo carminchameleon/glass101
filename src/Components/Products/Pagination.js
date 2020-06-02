@@ -52,10 +52,8 @@ const Wrapper = styled.div`
 
 const NumberBox = styled.div`
   padding: 5px;
-  border: 2px solid #0052db;
   :hover {
     cursor: pointer;
-    border: 2px solid #006db3;
     transition: all 190ms ease-out 0s;
   }
 `;

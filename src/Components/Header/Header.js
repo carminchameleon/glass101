@@ -10,11 +10,8 @@ function Header(props) {
   return (
     <Container>
       <Wrapper>
-        <TitleContainer>
-          <TitleLogo
-            onClick={() => history.push("/")}
-            src="https://images.velog.io/images/carminchameleon/post/490f7d1f-f8a8-46d7-890e-8c6523455cd0/image.png"
-          ></TitleLogo>
+        <TitleContainer onClick={() => history.push("/products")}>
+          <TitleLogo src="https://images.velog.io/images/carminchameleon/post/490f7d1f-f8a8-46d7-890e-8c6523455cd0/image.png"></TitleLogo>
         </TitleContainer>
         <CartContainer>
           <CartWrapper onClick={() => history.push("/cart")}>
@@ -60,14 +57,15 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const TitleLogo = styled.img`
   width: 300px;
   height: auto;
-  :hover {
-    cursor: pointer;
-  }
+
   @media only screen and (min-width: 768px) and (max-width: 1023px) {
     width: 250px;
   }
