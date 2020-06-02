@@ -48,7 +48,7 @@ function Payment(props) {
   const [coupons, setCoupons] = useState([]);
   const [discountType, setDiscountType] = useState(0);
 
-  const selectedItem = orderList.filter((el) => el.selected === true);
+  const selectedItem = orderList.filter((el) => el.selected);
 
   // 쿠폰의 데이터를 받아오는 함수
   async function fetchCoupons() {
@@ -178,6 +178,13 @@ const Title = styled.div`
   margin: 20px;
   margin-bottom: 40px;
   text-align: center;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 1.1rem;
+  }
+  @media only screen and (max-width: 479px) {
+    font-size: 1rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -247,6 +254,9 @@ const OrderNumber = styled.div`
   width: 100%;
   text-align: center;
   font-size: 1.3rem;
+  @media only screen and (max-width: 767px) {
+    font-size: 1.1rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.9rem;
   }
@@ -298,6 +308,9 @@ const Dropdown = styled.div`
     appearance: none;
     -webkit-appearance: none;
     font-style: italic;
+    @media only screen and (max-width: 767px) {
+      font-size: 1rem;
+    }
     @media only screen and (max-width: 479px) {
       font-size: 0.7rem;
     }

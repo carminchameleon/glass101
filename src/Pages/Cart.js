@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Header from "../../Components/Header/Header";
-import OrderList from "../../Components/Carts/OrderLists";
-import Payment from "../../Components/Carts/Payment";
-import EmptyCart from "../../Components/Carts/EmptyCart";
+import Header from "Components/Header/Header";
+import CartList from "Components/Carts/CartList";
+import Payment from "Components/Carts/Payment";
+import EmptyCart from "Components/Carts/EmptyCart";
 
 function Cart(props) {
   const { cartList } = props;
@@ -16,11 +16,11 @@ function Cart(props) {
           <ItemWrapper>
             <ItemBox>
               {cartList.length === 0 ? (
-                <EmptyCart></EmptyCart>
+                <EmptyCart />
               ) : (
                 <>
-                  <OrderList></OrderList>
-                  <Payment></Payment>
+                  <CartList />
+                  <Payment />
                 </>
               )}
             </ItemBox>

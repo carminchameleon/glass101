@@ -8,14 +8,14 @@ import {
   minusOrderCounts,
   controlCheck,
   controlAllCheck,
-} from "../../Redux/Actions/index";
+} from "Redux/Actions/index";
 import styled from "styled-components";
 import { CheckSquare } from "@styled-icons/boxicons-solid/CheckSquare";
 import { Plus } from "@styled-icons/evaicons-solid/Plus";
 import { Minus } from "@styled-icons/entypo/Minus";
 import { CloseSquareOutline } from "@styled-icons/evaicons-outline/CloseSquareOutline";
 
-const OrderList = (props) => {
+const CartList = (props) => {
   const {
     removeFromCart,
     orderList,
@@ -29,8 +29,7 @@ const OrderList = (props) => {
   const [selected, setSelected] = useState(true);
 
   const checkSelectedStatus = () => {
-    const unSelectedNum = orderList.filter((el) => el.selected === false)
-      .length;
+    const unSelectedNum = orderList.filter((el) => !el.selected).length;
     if (unSelectedNum !== 0) {
       // 만약 하나라도 선택이 안되어 있을 경우
       setSelected(false);
@@ -81,7 +80,7 @@ const OrderList = (props) => {
                 <InfoTh>상품 정보</InfoTh>
                 <CountsTh>상품 수량</CountsTh>
                 <PriceTh>주문 금액</PriceTh>
-                <RemoveTh></RemoveTh>
+                <RemoveTh />
               </MenuTr>
             </TableHead>
             <TableBody>
@@ -167,7 +166,7 @@ export default connect(mapStateToProps, {
   minusOrderCounts,
   controlCheck,
   controlAllCheck,
-})(OrderList);
+})(CartList);
 
 const Container = styled.div`
   padding-top: 30px;
@@ -183,6 +182,9 @@ const Title = styled.div`
   margin: 20px;
   margin-bottom: 40px;
   text-align: center;
+  @media only screen and (max-width: 479px) {
+    font-size: 1rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -211,6 +213,9 @@ const MenuTr = styled.tr`
   line-height: 3rem;
   font-weight: bold;
   color: #0052db;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
@@ -266,6 +271,9 @@ const TableBody = styled.tbody`
 
 const TableBodyTableRow = styled.tr`
   border-bottom: 1px solid #0052db;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
@@ -330,6 +338,9 @@ const InfoWrapper = styled.div`
 const NameBox = styled.div`
   font-size: 0.9rem;
   color: black;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
@@ -337,6 +348,9 @@ const NameBox = styled.div`
 
 const PerPriceBox = styled.div`
   font-size: 0.9rem;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
@@ -375,6 +389,9 @@ const CountsNumber = styled.div`
   text-align: center;
   font-size: 1rem;
   color: #0052db;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
@@ -414,6 +431,9 @@ const PriceTd = styled.td`
   text-align: center;
   font-size: 1rem;
   color: #0052db;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem;
+  }
   @media only screen and (max-width: 479px) {
     font-size: 0.6rem;
   }
