@@ -1,7 +1,11 @@
 # 클래스101 과제 : 장바구니 시스템 만들기
 이 프로젝트는 클래스101의 상품 목록 페이지와 장바구니 기능을 구현한 페이지 입니다. <br>
 상품 목록 페이지에서는 상품의 리스트를 확인하고 최대 3개의 상품을 장바구니에 넣을 수 있으며, 장바구니 페이지에서는 구매하고자 하는 상품의 목록과 수량을 선택한 후, 쿠폰의 적용 가격을 확인하실 수 있습니다. 
- 
+
+ <br></br>
+ <br></br>
+ <br></br>
+ <br></br>
 ### 프로젝트 데모 영상
 [![GLASS 101 Project Demo](https://images.velog.io/images/carminchameleon/post/d5485be1-dc83-40cf-88a9-c2899b638e79/image.png
 )](https://youtu.be/INNFL6JMFIs)
